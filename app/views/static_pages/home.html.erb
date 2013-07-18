@@ -1,6 +1,55 @@
-<h1>Sample App</h1>
-<p>
-  This is the home page for the
-  <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+<div class="center jumbotron">
+  <h1>The news and articles you love, all in one place.</h1>
+
+  <p class="lead">
+    News Diamond is a news reader designed especially for older adults. It collects the news and articles from your favorite websites to create a personalized online newspaper just for you.
+  </p>
+
+  <%= link_to "Get started today!", 'signup_path', class: "btn btn-large btn-success" %>
+</div>
+<!-- Featurettes -->
+<hr class="divider">
+<div class="featurette">
+	<img class="featurette-image pull-right" src="/assets/big_icon.png">
+	<h2 class="featurette-heading">Hundreds of news sites and blogs. <span class="muted">Take your pick.</span></h2>
+	<p class="lead">Freely subscribe to any of the hundreds of news sources, websites, and blogs available on News Diamond. Read articles from all of your favorites and then some, or discover something new based on your interests.</p>
+</div>
+
+<hr class="divider">
+<div class="featurette">
+	<img class="featurette-image pull-left" src="/assets/big_icon.png">
+	<h2 class="featurette-heading">Just like a newspaper. <span class="muted">But so much more powerful.</span></h2>
+	<p class="lead">News Diamond organizes your news from across the web into sections, just like a newspaper: browse articles in topics such as Headlines, Cooking, Business, Lifestyle, Humor, and more. And, since News Diamond collects your articles and builds you a personal paper that's updated in real time, you get the stories you want, when they break.</p>
+</div>
+
+<hr class="divider">
+<div class="featurette">
+	<img class="featurette-image pull-right" src="/assets/big_icon.png">
+	<h2 class="featurette-heading">Reading made <span class="muted">beautiful.</span></h2>
+	<p class="lead">News Diamond offers you a news-reading experience better than any other: beautiful, enjoyable, and distraction-free.</p>
+</div>
+
+<!-- row of other more minor features -->
+<hr class="divider">
+<div class="row">
+	<div class="span4">
+		<img class="img-circle" alt="Happy couple using the computer" style="width: 225px; height: 225px;" src="assets/elderly-couple-on-computer.png">
+		<h2>Easy to Use</h2>
+		<p>News Diamond is incredibly intuitive and easy to use, whether you've owned a computer for 20 years or 20 minutes. Got a question? Get it answered with a click of a button. Or, just give us a call.</p>
+	</div>
+	<div class="span4">
+		<img class="img-circle" alt="Older adults around a computer" style="width: 225px; height: 225px;" src="assets/elderly-share.png">
+		<h2>Share your Favorites</h2>
+		<p>Star articles as Favorites or save them to a "Read Later" list to keep track of the things you love. Share stories with friends and family with a single click.</p>
+	</div>
+	<div class="span4">
+		<img class="img-circle" alt="Happy couple" style="width: 225px; height: 225px;" src="assets/elderly-asian-couple.png">
+		<h2>Always Free</h2>
+		<p>News Diamond is absolutely, 100% free. You can trust that we will never share your personal information or email address. View our <a href="">Privacy Policy.</a></p>
+	</div>
+</div>
+
+<div class="bottom-signup">
+<%= link_to "Sign up for an account with News Diamond!", 'signup_path', class: "btn btn-large btn-success" %>
+</div>
+

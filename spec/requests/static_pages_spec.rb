@@ -7,7 +7,7 @@ describe "Static pages" do
   describe "Home page" do
     before { visit root_path }
 
-    it { should have_content('Sample App') }
+    it { should have_content('The news and articles you love, all in one place.') }
     it { should have_title(full_title('')) }
     it { should_not have_title('| Home') }
   end
@@ -30,6 +30,6 @@ describe "Static pages" do
     before { visit contact_path }
 
     it { should have_content('Contact') }
-    it { should have_title(full_title('Contact')) }
+    it { should have_title(full_title('Contact Us')) }
   end
 end
