@@ -32,4 +32,11 @@ describe "Static pages" do
     it { should have_content('Contact') }
     it { should have_title(full_title('Contact Us')) }
   end
+
+    describe "Privacy Policy page" do
+    before { visit privacy_policy_path }
+
+    it { should have_content('Privacy Policy') }
+    it { should have_title(full_title('Privacy Policy')) }
+  end
 end

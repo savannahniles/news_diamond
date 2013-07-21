@@ -14,7 +14,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Your Subscriptions", current_user %></li>
-                <li><%= link_to "Account Settings", '#' %></li>
+                <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
                 <li><%= link_to "Invite Friends", help_path %></li>
                 <li class="divider"></li>
                 <li>
