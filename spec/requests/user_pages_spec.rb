@@ -59,6 +59,15 @@ describe "User pages" do
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
 
+      describe "after saving the user" do
+        before { click_button submit }
+        let(:user) { User.find_by(email: 'user@example.com') }
+
+        it { should have_link('Sign out') }
+        it { should have_title(user.first_name) } #change if change heading on subscriptions listing
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+      end
+
     end #with valid information
   end #describe signup
 end
