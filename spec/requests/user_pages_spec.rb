@@ -4,11 +4,11 @@ describe "User pages" do
 
   subject { page }
 
-  describe "profile page" do
+  describe "show subscriptions for user page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_content(user.first_name) }
+    it { should have_content("Your Subscriptions") }
     it { should have_title(user.first_name) }
   end
 
@@ -55,7 +55,7 @@ describe "User pages" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
-        it { should have_title(user.first_name) } #####need to change if changing heading on subscriptions listing
+        it { should have_title(user.first_name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
 
@@ -64,7 +64,7 @@ describe "User pages" do
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it { should have_link('Sign out') }
-        it { should have_title(user.first_name) } #change if change heading on subscriptions listing
+        it { should have_title(user.first_name) } 
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
 

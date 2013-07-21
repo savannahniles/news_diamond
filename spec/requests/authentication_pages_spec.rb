@@ -18,7 +18,7 @@ describe "Authentication" do
       before { click_button "Sign in" }
 
       it { should have_title('Sign in') }
-      it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      it { should have_selector('div.alert.alert-error', text: 'Try again?') }
 
       describe "after visiting another page" do
         before { click_link "Home" }
@@ -34,8 +34,8 @@ describe "Authentication" do
         click_button "Sign in"
       end
 
-      it { should have_title(user.first_name) } #change if change heading on signin redirect
-      it { should have_link('Profile',     href: user_path(user)) }
+      it { should have_title(user.first_name) } 
+      it { should have_link('Your Subscriptions',     href: user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
@@ -44,7 +44,7 @@ describe "Authentication" do
         it { should have_link('Sign in') }
       end
       
-    end#with valid information
+    end #with valid information
   end #describe signin
 
 end

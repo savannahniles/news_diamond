@@ -48,6 +48,7 @@ textarea {
 .alert {
   width: 75%;
   margin: 40px auto;
+  padding: 8px 14px 8px 14px;
 }
 
 /* typography */
@@ -96,6 +97,11 @@ h2 {
 .logo-diamond {
   height: 40px;
   position: absolute;
+}
+
+.help-icon {
+  height: 40px;
+  padding-left: 10px;
 }
 
 /* footer */
