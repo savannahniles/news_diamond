@@ -1,5 +1,5 @@
 NewsDiamond::Application.routes.draw do
-  get "sections/new"
+  resources :sections
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root to:  'static_pages#home'
@@ -12,6 +12,8 @@ NewsDiamond::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+
+  match '/new_section', to: 'sections#new',     via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
