@@ -56,6 +56,7 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      let(:section) {FactoryGirl.create(:section)}
 
       describe "when attempting to visit a protected page" do
         before do
@@ -85,9 +86,37 @@ describe "Authentication" do
 
         describe "visiting the user index" do
           before { visit users_path }
-          it { should have_title('Sign in') }
+          it { should have_title('Sign in') } #####
         end
       end#in the users controller
+
+if false ############################################
+
+      describe "in the Sections controller" do
+
+        describe "visiting the new section page" do
+          before { visit new_section_path }
+          it { should have_title('Sign in') } ######
+        end
+
+        describe "submitting to the create action" do
+          before { patch section_path(section) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "visiting the edit page" do
+          before { visit edit_section_path }
+          it { should have_title('Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { patch edit_section(section) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end#Sections controller
+
+end ##################################################
+      
 
         describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }
