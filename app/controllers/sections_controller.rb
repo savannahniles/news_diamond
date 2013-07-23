@@ -1,4 +1,6 @@
 class SectionsController < ApplicationController
+
+
   def show
     @section = Section.find(params[:id])
   end
@@ -36,4 +38,5 @@ class SectionsController < ApplicationController
     def section_params
       params.require(:section).permit(:name)
     end
+
 end
