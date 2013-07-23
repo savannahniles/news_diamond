@@ -9,7 +9,7 @@ describe "Section pages" do
     before { visit section_path(section) }
 
     it { should have_content( capitalized_title(section.name) ) }
-    it { should have_title(section.name) }
+    it { should have_title(capitalized_title(section.name) )}
   end
 
   describe "Add Section page" do
@@ -39,6 +39,34 @@ describe "Section pages" do
       it "should create a section" do
         expect { click_button submit }.to change(Section, :count).by(1)
       end
+    end#with valid info
+  end#adding a section
+
+  describe "edit" do
+    let(:section) { FactoryGirl.create(:section) }
+    before { visit edit_section_path(section) }
+
+    describe "page" do
+      it { should have_content("Update Section") }
+      it { should have_title("Edit section") }
     end
-  end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      ####it { should have_content('error') }
+    end#with invalid
+
+    describe "with valid information" do
+      let(:new_name)  { "New Name" }
+      before do
+        fill_in "Name",             with: new_name
+        click_button "Save changes"
+      end
+
+      it { should have_title(capitalized_title(new_name) )}
+      it { should have_selector('div.alert.alert-success') }
+      specify { expect(section.reload.name).to  eq new_name.downcase }
+    end#with valid
+  end#edit
 end

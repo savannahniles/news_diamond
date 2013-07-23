@@ -1,0 +1,11 @@
+<% provide(:title, "Edit section") %>
+<h1>Update Section</h1>
+
+<div class="row">
+  <div class="form">
+    <%= form_for(@section) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
