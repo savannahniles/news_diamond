@@ -5,6 +5,7 @@
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+  
   <% if user.admin? %>
   <span class="pull-right">Admin</span>
   <% end %>
