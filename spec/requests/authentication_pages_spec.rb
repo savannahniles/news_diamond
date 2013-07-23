@@ -35,6 +35,14 @@ describe "Authentication" do
       it { should have_link('Account Settings',    href: edit_user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
+      it { should_not have_link('Users', href: users_path) }
+
+      describe "nav for an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before { sign_in admin }
+
+        it { should have_link('Users', href: users_path) }
+      end
 
       describe "followed by signout" do
         before { click_link "Sign out" }
@@ -52,9 +60,7 @@ describe "Authentication" do
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email",    with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+          sign_in user
         end
 
         describe "after signing in" do
