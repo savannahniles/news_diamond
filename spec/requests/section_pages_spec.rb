@@ -13,15 +13,22 @@ describe "Section pages" do
   end
 
   describe "Add Section page" do
-    before { visit new_section_path }
+    let(:admin) { FactoryGirl.create(:admin) }
+    before do
+      sign_in admin
+      visit new_section_path
+    end
 
     it { should have_content('Add Section') }
     it { should have_title(full_title('Add Section')) }
   end
 
   describe "Adding a section" do
-
-    before { visit new_section_path }
+    let(:admin) { FactoryGirl.create(:admin) }
+    before do
+      sign_in admin
+      visit new_section_path
+    end
 
     let(:submit) { "Create section" }
 
@@ -44,7 +51,11 @@ describe "Section pages" do
 
   describe "edit" do
     let(:section) { FactoryGirl.create(:section) }
-    before { visit edit_section_path(section) }
+    let(:admin) { FactoryGirl.create(:admin) }
+    before do
+      sign_in admin
+      visit edit_section_path(section)
+    end
 
     describe "page" do
       it { should have_content("Update Section") }
@@ -69,4 +80,23 @@ describe "Section pages" do
       specify { expect(section.reload.name).to  eq new_name.downcase }
     end#with valid
   end#edit
+
+  describe "sections index page" do
+    let(:section) { FactoryGirl.create(:section) }
+    let(:admin) { FactoryGirl.create(:admin) }
+    before do
+      sign_in admin
+      visit sections_path
+    end
+
+      it { should have_title('All Sections') }
+      it { should have_content('All Sections') }
+
+      it "should list each section" do
+        Section.all.each do |section|
+          expect(page).to have_selector('li', text: capitalized_title(section.name))
+        end
+      end
+  end#index
+
 end

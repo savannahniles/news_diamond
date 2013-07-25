@@ -1,0 +1,8 @@
+<% provide(:title, 'All Sections') %>
+<h1>All Sections</h1>
+
+<ul class="sections">
+  <% @sections.each do |section| %>
+    <%= render section %>
+  <% end %>
+</ul>
