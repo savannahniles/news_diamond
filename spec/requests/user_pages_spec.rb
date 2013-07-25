@@ -6,23 +6,6 @@ describe "User pages" do
 
   describe "index" do
 
-    describe "as non-admin user" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:non_admin) { FactoryGirl.create(:user) }
-
-      before { sign_in non_admin, no_capybara: true }
-
-      describe "Trying to access the index page" do
-        before { visit users_path }
-        it { should have_title('') }
-      end
-
-      describe "submitting a DELETE request to the Users#destroy action" do
-        before { delete user_path(user) }
-        specify { expect(response).to redirect_to(root_path) }
-      end
-    end
-
     describe "as an admin user" do
       let(:admin) { FactoryGirl.create(:admin) }
       before do
@@ -30,8 +13,8 @@ describe "User pages" do
         visit users_path
       end
 
-      it { should have_title('All users') }
-      it { should have_content('All users') }
+      it { should have_title('All Users') }
+      it { should have_content('All Users') }
 
       #it { should have_link('delete', href: user_path(User.first)) }
       #it "should be able to delete another user" do

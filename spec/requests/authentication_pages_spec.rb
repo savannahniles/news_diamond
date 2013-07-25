@@ -42,6 +42,7 @@ describe "Authentication" do
         before { sign_in admin }
 
         it { should have_link('Users', href: users_path) }
+        it { should have_link('Sections', href: sections_path) }
       end
 
       describe "followed by signout" do
@@ -56,6 +57,7 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      let(:section) { FactoryGirl.create(:section) }
 
       describe "when attempting to visit a protected page" do
         before do
@@ -89,7 +91,35 @@ describe "Authentication" do
         end
       end#in the users controller
 
-        describe "as wrong user" do
+      describe "in the Section controller" do
+
+        describe "visiting the new Section page" do
+          before { visit new_section_path(section) }
+          it { should have_title('Sign in') }
+        end
+
+        describe "submitting to the create action" do
+          before { patch section_path(section) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "visiting the edit Section page" do
+          before { visit edit_section_path(section) }
+          it { should have_title('Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { patch section_path(section) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "visiting the sections index" do
+          before { visit sections_path }
+          it { should have_title('Sign in') }
+        end
+      end#in the users controller
+
+      describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }
 	      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
 	      before { sign_in user, no_capybara: true }
@@ -105,6 +135,50 @@ describe "Authentication" do
 	      end
 
 	    end#as the wrong user
+
+    describe "as non-admin user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:non_admin) { FactoryGirl.create(:user) }
+      let(:section) { FactoryGirl.create(:section) }
+
+      before { sign_in non_admin, no_capybara: true }
+
+      describe "Trying to access the user index page" do
+        before { visit users_path }
+        it { should have_title('') }
+      end
+
+      describe "submitting a DELETE request to the Users#destroy action" do
+        before { delete user_path(user) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+
+      describe "trying to visit the new Section page" do
+        before { get new_section_path }
+        it { should have_title('') }
+      end
+
+      describe "submitting to the create action" do
+        before { patch section_path(section) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+
+      describe "trying to visit the edit Section page" do
+        before { post sections_path }
+        it { should have_title('') }
+      end
+
+      describe "submitting to the update action" do
+        before { patch section_path(section) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+
+      describe "Trying to access the sections index page" do
+        before { visit sections_path }
+        it { should have_title('') }
+      end
+    end#as a non-admin user
+
     end#for non signed in users
   end#authorization
 
