@@ -1,6 +1,8 @@
 <% provide(:title, 'All Sections') %>
 <h1>All Sections</h1>
 
+<p class="lead"><%= link_to 'Add a New Section', new_section_path %></p>
+
 <ul class="sections">
   <% @sections.each do |section| %>
     <%= render section %>

@@ -91,10 +91,12 @@ describe "Section pages" do
 
       it { should have_title('All Sections') }
       it { should have_content('All Sections') }
+      it { should have_link('Add a New Section', href: new_section_path) }
 
       it "should list each section" do
         Section.all.each do |section|
           expect(page).to have_selector('li', text: capitalized_title(section.name))
+          expect(page).to have_link('Edit', href: edit_section_path(section))
         end
       end
   end#index
