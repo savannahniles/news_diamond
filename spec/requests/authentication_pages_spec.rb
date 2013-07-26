@@ -94,12 +94,12 @@ describe "Authentication" do
       describe "in the Section controller" do
 
         describe "visiting the new Section page" do
-          before { visit new_section_path(section) }
+          before { get new_section_path }
           it { should have_title('Sign in') }
         end
 
         describe "submitting to the create action" do
-          before { patch section_path(section) }
+          before { post sections_path }
           specify { expect(response).to redirect_to(signin_path) }
         end
 
@@ -180,6 +180,21 @@ describe "Authentication" do
     end#as a non-admin user
 
     end#for non signed in users
+
+    describe "for signed in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+
+      describe "using a 'new' action" do
+          before { get new_user_path }
+          specify { response.should redirect_to(root_path) }
+      end
+
+      describe "using a 'create' action" do
+          before { post users_path }
+          specify { response.should redirect_to(root_path) }
+      end         
+    end#for signed in users
   end#authorization
 
 end
