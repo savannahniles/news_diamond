@@ -5,8 +5,12 @@ describe "Section pages" do
   subject { page }
 
   describe "Section page" do
+    let(:user) { FactoryGirl.create(:user) }
     let(:section) { FactoryGirl.create(:section) }
-    before { visit section_path(section) }
+    before do
+      sign_in user
+      visit section_path(section)
+    end
 
     it { should have_content( capitalized_title(section.name) ) }
     it { should have_title(capitalized_title(section.name) )}

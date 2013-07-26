@@ -94,7 +94,7 @@ describe "Authentication" do
       describe "in the Section controller" do
 
         describe "visiting the new Section page" do
-          before { get new_section_path }
+          before { visit new_section_path }
           it { should have_title('Sign in') }
         end
 
@@ -136,63 +136,63 @@ describe "Authentication" do
 
 	    end#as the wrong user
 
-    describe "as non-admin user" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:non_admin) { FactoryGirl.create(:user) }
-      let(:section) { FactoryGirl.create(:section) }
+      describe "as non-admin user" do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:non_admin) { FactoryGirl.create(:user) }
+        let(:section) { FactoryGirl.create(:section) }
 
-      before { sign_in non_admin, no_capybara: true }
+        before { sign_in non_admin, no_capybara: true }
 
-      describe "Trying to access the user index page" do
-        before { visit users_path }
-        it { should have_title('') }
-      end
+        describe "Trying to access the user index page" do
+          before { visit users_path }
+          it { should have_title('') }
+        end
 
-      describe "submitting a DELETE request to the Users#destroy action" do
-        before { delete user_path(user) }
-        specify { expect(response).to redirect_to(root_path) }
-      end
+        describe "submitting a DELETE request to the Users#destroy action" do
+          before { delete user_path(user) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
 
-      describe "trying to visit the new Section page" do
-        before { get new_section_path }
-        it { should have_title('') }
-      end
+        describe "trying to visit the new Section page" do
+          before { get new_section_path }
+          it { should have_title('') }
+        end
 
-      describe "submitting to the create action" do
-        before { patch section_path(section) }
-        specify { expect(response).to redirect_to(root_path) }
-      end
+        describe "submitting to the create action" do
+          before { patch section_path(section) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
 
-      describe "trying to visit the edit Section page" do
-        before { post sections_path }
-        it { should have_title('') }
-      end
+        describe "trying to visit the edit Section page" do
+          before { post sections_path }
+          it { should have_title('') }
+        end
 
-      describe "submitting to the update action" do
-        before { patch section_path(section) }
-        specify { expect(response).to redirect_to(root_path) }
-      end
+        describe "submitting to the update action" do
+          before { patch section_path(section) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
 
-      describe "Trying to access the sections index page" do
-        before { visit sections_path }
-        it { should have_title('') }
-      end
-    end#as a non-admin user
+        describe "Trying to access the sections index page" do
+          before { visit sections_path }
+          it { should have_title('') }
+        end
+      end#as a non-admin user
 
     end#for non signed in users
 
     describe "for signed in users" do
       let(:user) { FactoryGirl.create(:user) }
-      before { sign_in user }
+      before { sign_in user, no_capybara: true }
 
       describe "using a 'new' action" do
           before { get new_user_path }
-          specify { response.should redirect_to(root_path) }
+          it { should have_title('') }
       end
 
       describe "using a 'create' action" do
           before { post users_path }
-          specify { response.should redirect_to(root_path) }
+          it { should have_title('') }      
       end         
     end#for signed in users
   end#authorization

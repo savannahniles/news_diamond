@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :edit, :update, :index]
+  before_action :signed_in_user, only: [:new, :create, :show, :edit, :update, :index]
   before_action :admin_user,     only:  [:new, :create, :edit, :update, :index]
 
 
