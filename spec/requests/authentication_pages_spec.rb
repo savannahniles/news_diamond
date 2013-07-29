@@ -31,7 +31,7 @@ describe "Authentication" do
       before { sign_in user }
 
       it { should have_title(user.first_name) } 
-      it { should have_link('Your Subscriptions',     href: user_path(user)) }
+      it { should have_link('Your Websites',     href: user_path(user)) }
       it { should have_link('Account Settings',    href: edit_user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }

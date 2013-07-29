@@ -9,6 +9,7 @@ describe Section do
   subject { @section }
 
   it { should respond_to(:name) }
+  it { should respond_to(:feeds) }
 
   it { should be_valid }
 
