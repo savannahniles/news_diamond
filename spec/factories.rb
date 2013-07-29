@@ -14,4 +14,10 @@ FactoryGirl.define do
   factory :section do
     name     "Cooking"
   end
+
+  factory :feed do
+    name  "The New York Times"
+    description "Lorem ipsum"
+    section
+  end
 end

@@ -4,9 +4,12 @@ describe "Section pages" do
 
   subject { page }
 
-  describe "Section page" do
+  describe "Section show page" do
     let(:user) { FactoryGirl.create(:user) }
     let(:section) { FactoryGirl.create(:section) }
+    let!(:f1) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+    let!(:f2) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
+
     before do
       sign_in user
       visit section_path(section)
@@ -14,7 +17,15 @@ describe "Section pages" do
 
     it { should have_content( capitalized_title(section.name) ) }
     it { should have_title(capitalized_title(section.name) )}
-  end
+
+    describe "list of feeds in section" do
+      it { should have_content(f1.name) }
+      it { should have_content(f1.description) }
+      it { should have_content(f2.name) }
+      it { should have_content(f2.description) }
+      it { should have_content(section.feeds.count) }
+    end
+  end#section show page
 
   describe "Add Section page" do
     let(:admin) { FactoryGirl.create(:admin) }

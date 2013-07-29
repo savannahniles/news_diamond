@@ -1,2 +1,15 @@
 <% provide(:title, capitalized_title(@section.name)) %>
-<h1><%= capitalized_title(@section.name) %></h1>
+<div class="two-line-header">
+	<h2>Your Websites</h2>
+	<h1><%= capitalized_title(@section.name) %></h1>
+</div>
+<% if @section.feeds.any? %>
+  <div class="two-line-header">
+  	<h1>All Websites in <%=capitalized_title(@section.name)%></h1>
+  	<h2><%= @section.feeds.count %> Total Subscriptions</h2>
+  </div>
+  <ol class="feeds">
+    <%= render @feeds %>
+  </ol>
+  <%= will_paginate @feeds %>
+<% end %>

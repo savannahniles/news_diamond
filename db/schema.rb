@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723022017) do
+ActiveRecord::Schema.define(version: 20130726160335) do
+
+  create_table "feeds", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "section_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feeds", ["section_id", "name"], name: "index_feeds_on_section_id_and_name"
 
   create_table "sections", force: true do |t|
     t.string   "name"

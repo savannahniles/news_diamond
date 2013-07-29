@@ -1,3 +1,15 @@
+<% if signed_in? %>
+<div class="two-line-header">
+	<h2><%= current_time %></h2>
+	<h1>Welcome, <%= current_user.first_name %></h1>
+</div>
+
+<h1>Your Account</h1>
+
+
+<% else %>
+
+
 <div class="center jumbotron">
   <h1>The news and articles you love, all in one place.</h1>
 
@@ -53,3 +65,4 @@
 <%= link_to "Sign up for an account with News Diamond!", signup_path, class: "btn btn-large btn-success" %>
 </div>
 
+<% end %>

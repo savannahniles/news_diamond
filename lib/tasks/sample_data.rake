@@ -18,5 +18,19 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    Section.create!(name: "Headlines")
+    Section.create!(name: "Politics")
+    Section.create!(name: "Science and Technology")
+    Section.create!(name: "Opinion")
+    Section.create!(name: "Lifestyle")
+    Section.create!(name: "Cooking")
+
+    sections = Section.all(limit: 6)
+    50.times do
+      name = Faker::Lorem.words(3)
+      description = Faker::Lorem.sentence(20)
+      sections.each { |section| section.feeds.create!(name: name, description: description) }
+    end
   end
 end
