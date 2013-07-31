@@ -1,7 +1,8 @@
 NewsDiamond::Application.routes.draw do
-  resources :sections
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :sections
+
   root to:  'static_pages#home'
   
   match '/help',    to: 'static_pages#help',    via: 'get'

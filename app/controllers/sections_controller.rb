@@ -5,8 +5,20 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    @feeds = @section.feeds.paginate(page: params[:page])
-  end
+    @feeds = @section.feeds.paginate(page: params[:page], :per_page => 10)
+    @feeds_all = @section.feeds
+    @feeds_even = []
+    @feeds_odd = []
+
+    index=0
+    @feeds_all.each do |feed|
+      if feed.id%2 == 0
+        @feeds_even.push(feed)
+      elsif feed.id%2 != 0
+        @feeds_odd.push(feed)
+      end#if else
+    end#feeds do
+  end#def show
 
   def new
     @section = Section.new

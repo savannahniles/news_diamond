@@ -1,15 +1,35 @@
 <% provide(:title, capitalized_title(@section.name)) %>
-<div class="two-line-header">
-	<h2>Your Websites</h2>
-	<h1><%= capitalized_title(@section.name) %></h1>
+<div class="two-line-header section-header">
+  <img src="../../assets/140x140.png" alt="section icon">
+	<h2 class="text">Your Websites</h2>
+	<h1 class="text"><%= capitalized_title(@section.name) %></h1>
 </div>
+
+<hr class="divider">
+
+
 <% if @section.feeds.any? %>
   <div class="two-line-header">
   	<h1>All Websites in <%=capitalized_title(@section.name)%></h1>
-  	<h2><%= @section.feeds.count %> Total Subscriptions</h2>
+  	<h2 class="search-h2"><%= @section.feeds.count %> Total Websites </h2>
+    <form class="form-search">
+      <input type="text" class="input-medium search-query">
+      <button type="submit" class="btn">Search</button>
+    </form>
   </div>
-  <ol class="feeds">
-    <%= render @feeds %>
-  </ol>
-  <%= will_paginate @feeds %>
+  <table class="two-column">
+    <tr>
+      <td>
+        <ol class="feeds">
+          <%= render @feeds %>
+        </ol>
+      </td>
+      <td>
+        <ol class="feeds right-column">
+          <%= render @feeds %>
+        </ol>
+      </td>
+    </tr>
+  </table>
+  <!--<%= will_paginate @feeds %> -->
 <% end %>

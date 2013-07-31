@@ -39,11 +39,11 @@ describe "User pages" do
     end#as an admin user  
   end#describe index
 
-  describe "show subscriptions for user page" do
+  describe "show Websites for user page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_content("Your Subscriptions") }
+    it { should have_content("Your Websites") }
     it { should have_title(user.first_name) }
   end
 
