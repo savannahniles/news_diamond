@@ -4,13 +4,35 @@ describe "Static pages" do
 
   subject { page }
 
-  describe "Home page" do
-    before { visit root_path }
+  let(:user) { FactoryGirl.create(:user) }
 
-    it { should have_content('The news and articles you love, all in one place.') }
+  describe "Home page" do
+
+    before{ visit root_path}
+
     it { should have_title(full_title('')) }
     it { should_not have_title('| Home') }
-  end
+
+    describe "when not signed-in" do
+      before { visit root_path }
+      it { should have_content('The news and articles you love, all in one place.') }
+    end
+
+    describe "when signed-in" do
+      before do
+        sign_in user
+        visit root_path
+      end
+
+      it { should have_content('Welcome')}
+
+      it "should list each section" do
+        Section.all.each do |section|
+          expect(page).to have_selector('li', text: capitalized_title(section.name))
+        end
+      end#should list each section
+    end#singed in
+  end#home page
 
   describe "Help page" do
     before { visit help_path }
