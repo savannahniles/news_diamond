@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   before_action :signed_in_user
+  before_action :admin_user,     only:  [:new, :create, :edit, :update]
 
   def create
   	@section = Section.find_by_id(params[:section_id])
@@ -19,9 +20,17 @@ class FeedsController < ApplicationController
   end
 
   def edit
+    @feed = Feed.find(params[:id])
   end
 
   def update
+    @feed = Feed.find(params[:id])
+    if @feed.update_attributes(feed_params)
+      flash[:success] = "Feed updated"
+      redirect_to @feed
+    else
+      render 'edit'
+    end
   end
 
   def show

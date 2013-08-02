@@ -8,5 +8,8 @@
 		<%= link_to "Favorite this Website", current_user %> | 
 		<%= link_to "Go to the official website for #{@feed.name}", current_user %> | 
 		<%= link_to "Unsubscribe", current_user %>
+		<% if current_user.admin? %>
+			| <%= link_to "Admin: Edit", edit_feed_path(@feed) %>
+		<% end %>
 	</p>
 </div>

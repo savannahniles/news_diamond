@@ -58,6 +58,7 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       let(:section) {FactoryGirl.create(:section)}
+      let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
 
       describe "when attempting to visit a protected page" do
         before do
@@ -125,6 +126,16 @@ describe "Authentication" do
           before { post feeds_path }
           specify { expect(response).to redirect_to(signin_path) }
         end
+
+        describe "visiting the edit Feed page" do
+          before { visit edit_feed_path(feed) }
+          it { should have_title('Sign in') }
+        end
+
+        describe "submitting to the update action" do
+          before { patch feed_path(feed) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
       end# in the feeds controller
 
       describe "as wrong user" do
@@ -148,6 +159,7 @@ describe "Authentication" do
         let(:user) { FactoryGirl.create(:user) }
         let(:non_admin) { FactoryGirl.create(:user) }
         let(:section) { FactoryGirl.create(:section) }
+        let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
 
         before { sign_in non_admin, no_capybara: true }
 
@@ -166,7 +178,7 @@ describe "Authentication" do
           it { should have_title('') }
         end
 
-        describe "submitting to the create action" do
+        describe "submitting to the section create action" do
           before { patch section_path(section) }
           specify { expect(response).to redirect_to(root_path) }
         end
@@ -176,7 +188,7 @@ describe "Authentication" do
           it { should have_title('') }
         end
 
-        describe "submitting to the update action" do
+        describe "submitting to the section update action" do
           before { patch section_path(section) }
           specify { expect(response).to redirect_to(root_path) }
         end
@@ -184,6 +196,21 @@ describe "Authentication" do
         describe "Trying to access the sections index page" do
           before { visit sections_path }
           it { should have_title('') }
+        end
+
+        describe "submitting to the feed create action" do
+          before { patch feed_path(feed) }
+          specify { expect(response).to redirect_to(root_path) }
+        end
+
+        describe "trying to visit the edit Feed page" do
+          before { post feeds_path }
+          it { should have_title('') }
+        end
+
+        describe "submitting to the feed update action" do
+          before { patch feed_path(feed) }
+          specify { expect(response).to redirect_to(root_path) }
         end
       end#as a non-admin user
 
