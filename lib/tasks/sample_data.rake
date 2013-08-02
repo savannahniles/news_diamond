@@ -28,9 +28,9 @@ namespace :db do
 
     sections = Section.all(limit: 6)
     50.times do
-      name = Faker::Lorem.words(3)
+      name = Faker::Lorem.sentence(3)
       description = Faker::Lorem.sentence(20)
       sections.each { |section| section.feeds.create!(name: name, description: description) }
-    end
-  end
-end
+    end #50 times
+  end #task
+end #namespace

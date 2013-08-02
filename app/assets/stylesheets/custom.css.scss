@@ -322,6 +322,9 @@ input {
     .text {
       margin-left: 90px;
     }
+    p, .lead {
+      margin-bottom: 0;
+    }
   }
 }
 

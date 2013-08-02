@@ -29,4 +29,5 @@ describe Feed do
     before { @feed.description = " " }
     it { should_not be_valid }
   end
+
 end

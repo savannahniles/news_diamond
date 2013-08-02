@@ -1,0 +1,12 @@
+<% provide(:title, @feed.name) %>
+<div class="two-line-header section-header">
+  <img src="../../assets/140x140.png" alt="website icon">
+	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
+	<h1 class="text"><%= @feed.name %></h1>
+	<p class="text lead"><%= @feed.description %></p>
+	<p class="text">
+		<%= link_to "Favorite this Website", current_user %> | 
+		<%= link_to "Go to the official website for #{@feed.name}", current_user %> | 
+		<%= link_to "Unsubscribe", current_user %>
+	</p>
+</div>

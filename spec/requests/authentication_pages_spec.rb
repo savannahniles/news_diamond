@@ -117,7 +117,15 @@ describe "Authentication" do
           before { visit sections_path }
           it { should have_title('Sign in') }
         end
-      end#in the users controller
+      end#in the sections controller
+
+      describe "in the Feeds controller" do
+
+        describe "submitting to the create action" do
+          before { post feeds_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end# in the feeds controller
 
       describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }

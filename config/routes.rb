@@ -2,6 +2,7 @@ NewsDiamond::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :sections
+  resources :feeds, only: [:create, :edit, :update, :show]
 
   root to:  'static_pages#home'
   
@@ -15,6 +16,9 @@ NewsDiamond::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   match '/new_section', to: 'sections#new',     via: 'get'
+
+  #map.resources :feed, :has_many => 'feeds'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

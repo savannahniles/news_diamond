@@ -5,13 +5,13 @@
 	<h1 class="text"><%= capitalized_title(@section.name) %></h1>
 </div>
 
-<hr class="divider">
-
-
 <% if @section.feeds.any? %>
+
+  <hr class="divider">
+
   <div class="two-line-header">
   	<h1>All Websites in <%=capitalized_title(@section.name)%></h1>
-  	<h2 class="search-h2"><%= @section.feeds.count %> Total Websites </h2>
+  	<h2 class="search-h2"><%= pluralize(@section.feeds.count, 'Website', 'Total Websites') %> </h2>
     <form class="form-search">
       <input type="text" class="input-medium search-query">
       <button type="submit" class="btn">Search</button>
@@ -31,5 +31,15 @@
       </td>
     </tr>
   </table>
-  <!--<%= will_paginate @feeds %> -->
+  <%= will_paginate @feeds %>
+<% end %>
+
+<% if current_user.admin? %>
+
+  <hr class="divider">
+
+  <h1>Add a New Website to <%= capitalized_title(@section.name) %></h1>
+
+  <%= render 'shared/feed_form' %>
+
 <% end %>

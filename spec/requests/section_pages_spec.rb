@@ -25,6 +25,18 @@ describe "Section pages" do
       it { should have_content(f2.description) }
       it { should have_content(section.feeds.count) }
     end
+
+    describe "Add a new feed" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        visit section_path(section)
+      end
+
+      it { should have_content("Name")}
+
+    end
+
   end#section show page
 
   describe "Add Section page" do

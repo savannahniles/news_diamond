@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :show, :edit, :update, :index]
+  before_action :signed_in_user
   before_action :admin_user,     only:  [:new, :create, :edit, :update, :index]
 
 
@@ -7,17 +7,20 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @feeds = @section.feeds.paginate(page: params[:page], :per_page => 10)
     @feeds_all = @section.feeds
-    @feeds_even = []
-    @feeds_odd = []
+    #@feeds_even = []
+    #@feeds_odd = []
 
-    index=0
-    @feeds_all.each do |feed|
-      if feed.id%2 == 0
-        @feeds_even.push(feed)
-      elsif feed.id%2 != 0
-        @feeds_odd.push(feed)
-      end#if else
-    end#feeds do
+    #index=0
+    #@feeds_all.each do |feed|
+      #if feed.id%2 == 0
+        #@feeds_even.push(feed)
+      #elsif feed.id%2 != 0
+        #@feeds_odd.push(feed)
+      #end#if else
+    #end#feeds do
+
+    @feed = @section.feeds.build if signed_in?
+
   end#def show
 
   def new
@@ -28,7 +31,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
     if @section.save
       flash[:success] = "Section created! Cool!"
-      redirect_to @section
+      redirect_back_or @section
     else
       render 'new'
     end
