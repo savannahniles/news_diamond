@@ -12,6 +12,9 @@ describe Feed do
   it { should respond_to(:section_id) }
   it { should respond_to(:section) }
   its(:section) { should eq section }
+  it { should respond_to(:relationships) }
+  it { should respond_to(:reverse_relationships) }
+  it { should respond_to(:users) }
 
   it { should be_valid }
 
