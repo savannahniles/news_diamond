@@ -41,6 +41,7 @@ describe "User pages" do
 
   describe "Your Websites page" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:admin) { FactoryGirl.create(:admin) }
     let(:section) { FactoryGirl.create(:section) }
     let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
     let!(:f2_not_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
@@ -59,7 +60,18 @@ describe "User pages" do
       it { should have_content(f2_not_followed.name) }
       it { should have_content(f2_not_followed.description) }
       #it { should have_content(Feed.count) }
+      it { should_not have_link('New', href: new_feed_path )}
     end
+
+    describe "as an admin" do
+      before do
+        sign_in admin
+        visit user_path(user)
+      end
+
+      it { should have_link('New', href: new_feed_path )}
+    end
+
   end
 
   describe "signup page" do

@@ -25,9 +25,6 @@
 		    <button class="sort btn btn-info" data-sort="name">Sort by Name</button>
 		  </div>
 
-		
-	    
-
 	    <ul class="list feeds_list">
 	      <% @feeds.each do |feed| %>
 	        <%= render feed %>
@@ -37,5 +34,9 @@
 	    	<ul class="pagingBottom"></ul>
 	    </div>
 	</div>
+
+	<% if current_user.admin? %>
+	<p class="lead"><%= link_to 'Add a New Feed', new_feed_path %></p>
+	<% end %>
  
 <% end %>
