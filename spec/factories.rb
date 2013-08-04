@@ -16,8 +16,11 @@ FactoryGirl.define do
   end
 
   factory :feed do
-    name  "The New York Times"
-    description "Lorem ipsum"
+    #name  "The New York Times"
+    #description "Lorem ipsum"
+    #section
+    sequence(:name)  { |n| "Feed #{n}" }
+    sequence(:description)  { |n| "Description goes here." }
     section
   end
 end

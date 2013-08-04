@@ -3,7 +3,7 @@
 
 <p class="lead"><%= link_to 'Add a New Section', new_section_path %></p>
 
-<ul class="sections">
+<ul class="sections-index">
   <% @sections.each do |section| %>
     <%= render section %>
   <% end %>

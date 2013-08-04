@@ -92,6 +92,7 @@ h2 {
   }
   .form-search {
     padding: 10px;
+    margin: 0px;
   }
 }
 
@@ -291,7 +292,7 @@ input {
 
 /* Users index */
 
-.users, .sections {
+.users-index, .sections-index {
   list-style: none;
   margin: 0;
   li {
@@ -306,7 +307,7 @@ input {
 
 /* feeds */
 
-.feeds {
+.feeds_list {
   list-style: none;
   margin: 10px 0 0 0;
   li {
@@ -314,6 +315,7 @@ input {
     margin-right: 20px;
     border-top: 1px solid #e8e8e8;
     min-height: 95px;
+
     img {
       height: 80px;
       position: absolute;
@@ -330,6 +332,19 @@ input {
 
 .two-column {
   margin-right: 30px;
+}
+
+.pagination {
+  .pagingTop, .pagingBottom {
+    .page {
+      float: left;
+      padding: 4px 12px;
+      line-height: 20px;
+      text-decoration: none;
+      background-color: white;
+      border: 1px solid #dddddd;
+    }
+  }
 }
 
 

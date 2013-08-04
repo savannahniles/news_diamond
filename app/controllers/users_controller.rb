@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @sections = Section.all
+    @feeds = Feed.all
   end
 
   def create

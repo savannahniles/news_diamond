@@ -17,20 +17,9 @@
       <button type="submit" class="btn">Search</button>
     </form>
   </div>
-  <table class="two-column">
-    <tr>
-      <td>
-        <ol class="feeds">
-          <%= render @feeds %>
-        </ol>
-      </td>
-      <td>
-        <ol class="feeds right-column">
-          <%= render @feeds %>
-        </ol>
-      </td>
-    </tr>
-  </table>
+  <ol class="feeds">
+    <%= render @feeds %>
+  </ol>   
   <%= will_paginate @feeds %>
 <% end %>
 

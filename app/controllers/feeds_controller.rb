@@ -2,20 +2,18 @@ class FeedsController < ApplicationController
   before_action :signed_in_user
   before_action :admin_user,     only:  [:new, :create, :edit, :update]
 
-  def create
-  	@section = Section.find_by_id(params[:section_id])
-  	#@feed = @section.feeds.build(feed_params)
-  	@feed = Feed.new(feed_params)
+  def new
+    @feed = Feed.new
+    @sections = Section.all
+  end
 
-  	#@section = Section.find_by_id(params[:section_id])
-	#@feed = @section.feeds.build(params[:name, :description])
+  def create
+    @feed = Feed.new(feed_params)
     if @feed.save
-      flash[:success] = "Feed created!"
-      redirect_to feed_path(@feed)
+      flash[:success] = "Feed created! Cool!"
+      redirect_back_or @feed
     else
-      #flash.now[:error] = 'Feed not saved. Did you fill in every field?'
-      redirect_to section_path(@section)
-      #render :action => "show", :controller => "section", :id => params[:section_id]
+      render 'new'
     end
   end
 
