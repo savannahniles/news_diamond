@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   before_action :signed_in_user
   before_action :admin_user,     only:  [:new, :create, :edit, :update]
+  include FeedsHelper
 
   def new
     @feed = Feed.new

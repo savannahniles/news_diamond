@@ -1,6 +1,6 @@
 <li>
   <img src="../../assets/140x140.png" height="80px" alt="website icon">
-  <p class="name lead text"><%= link_to feed.name, feed_path(feed) %> | <span class="section"><%= capitalized_title(feed.section.name) %></span></p>
+  <p class="name lead text"><%= link_to feed.name, feed_path(feed) %> <small class="section">| <%= capitalized_title(feed.section.name) %></small></p>
   <p class="description text"><%= feed.description %></p>
   <p class="text"><%= link_to "Add this website to your newspaper", '#' %></p>
 </li>
