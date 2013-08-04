@@ -122,6 +122,11 @@ describe "Authentication" do
 
       describe "in the Feeds controller" do
 
+        describe "visiting the new Feed page" do
+          before { visit new_feed_path }
+          it { should have_title('Sign in') }
+        end
+
         describe "submitting to the create action" do
           before { post feeds_path }
           specify { expect(response).to redirect_to(signin_path) }
@@ -195,6 +200,11 @@ describe "Authentication" do
 
         describe "Trying to access the sections index page" do
           before { visit sections_path }
+          it { should have_title('') }
+        end
+
+        describe "trying to visit the new Feed page" do
+          before { get new_feed_path }
           it { should have_title('') }
         end
 
