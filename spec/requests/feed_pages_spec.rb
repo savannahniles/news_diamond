@@ -8,7 +8,9 @@ describe "Feed pages" do
   let(:admin) { FactoryGirl.create(:admin) }
   let(:section) { FactoryGirl.create(:section) }
   let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
-  
+  let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Swag News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+  let!(:f2_not_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
+
   before { sign_in user }
 
   describe "New Feed page" do
@@ -64,6 +66,15 @@ describe "Feed pages" do
     it { should have_title( feed.name )}
     it { should_not have_link('Admin: Edit', href: edit_feed_path(feed)) }
 
+    describe "follower/following counts" do
+      before do
+        user.follow!(feed)
+        visit feed_path(feed)
+      end
+
+      #it { should have_content("1 person") }
+    end
+
     describe "as an admin" do
       before do
         sign_in admin
@@ -114,4 +125,20 @@ describe "Feed pages" do
       #specify { expect(section.reload.name).to  eq new_name.downcase }
     end#with valid
   end#edit page
+
+  describe "index" do
+    before do
+      visit feeds_path
+    end
+
+    it { should have_title('All Websites') }
+    it { should have_content('Add New Websites to your Newspaper') }
+
+    it "should list each feed" do
+      Feed.all.each do |feed|
+        expect(page).to have_selector('li', text: feed.name)
+        expect(page).to have_selector('li', text: feed.description)
+      end
+    end#should list each user
+  end#index
 end

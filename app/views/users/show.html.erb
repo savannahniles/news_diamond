@@ -1,42 +1,33 @@
 <% provide(:title, @user.first_name) %>
 
-<div class="two-line-header">
-	<h1>Your Websites</h1>
-	<h2 class="search-h2">0 Websites Total</h2>
-	<form class="form-search">
-	  <input type="text" class="input-medium search-query">
-	  <button type="submit" class="btn">Search</button>
-	</form>
-</div>
+<div id="example-list">
 
-<% if @feeds.any? %>
+	<div class="two-line-header">
+		<h1>Your Websites <%= link_to 'Add More', feeds_path, class: "lead btn btn-success center-button" %></h1>
+		<h2 class="search-h2"><span id="feeds" class="stat"><%= @user.feeds.count %></span> Total <span class="lead">| Search by website name and key words:</span></h2>
+		<form class="form-search">
+		  <input type="text" class="input-medium search-query search">
+		  <button type="submit" class="btn">Search</button>
+		</form>
+	</div>
 
-  <hr class="divider">
-	<div id="example-list">
-
-		  <div class="two-line-header">
-		  	<h1>Add New Websites to your Newspaper</h1>
-		  	<h2 class="search-h2">Search by website name and key words:</h2>
-		    <form class="form-search">
-		      <input type="text" class="input-medium search-query search">
-		      <button type="submit" class="btn">Search</button>
-		    </form>
-		    <p class="lead left">Or browse by section:</p>
-		    <button class="sort btn btn-info" data-sort="name">Sort by Name</button>
-		  </div>
+	<% if @user.feeds.any? %>
 
 	    <ul class="list feeds_list">
-	      <% @feeds.each do |feed| %>
+	      <% @user.feeds.each do |feed| %>
 	        <%= render feed %>
 	      <% end %>
 	    </ul>
 	    <div class="pagination">
 	    	<ul class="pagingBottom"></ul>
 	    </div>
-	</div>
-
-	<% if current_user.admin? %>
-	<p class="lead"><%= link_to 'Add a New Feed', new_feed_path %></p>
+	<% else %>
+		<p class= "lead center">You're not following any websites! How about adding some?</p>
 	<% end %>
+	<hr class="divider">
+	<div class="center">
+		<h2>Did you know there are <%= @feeds.count %> websites on News Diamond?</h2>
+		<%= link_to 'Find More Websites to Add to your Newspaper', feeds_path, class: "lead btn btn-success btn-large center-button" %>
+	</div>
+</div><!--example list-->
  
-<% end %>

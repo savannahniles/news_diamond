@@ -24,3 +24,4 @@ FactoryGirl.define do
     section
   end
 end
+

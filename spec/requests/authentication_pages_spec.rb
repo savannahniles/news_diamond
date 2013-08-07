@@ -30,7 +30,7 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
 
-      it { should have_title(user.first_name) } 
+      it { should have_content(user.first_name) } 
       it { should have_link('Your Websites',     href: user_path(user)) }
       it { should have_link('Account Settings',    href: edit_user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
@@ -43,6 +43,7 @@ describe "Authentication" do
 
         it { should have_link('Users', href: users_path) }
         it { should have_link('Sections', href: sections_path) }
+        it { should have_link('Website',       href: feeds_path) }
       end
 
       describe "followed by signout" do
@@ -89,6 +90,11 @@ describe "Authentication" do
         describe "visiting the user index" do
           before { visit users_path }
           it { should have_title('Sign in') } #####
+        end
+
+        describe "visiting the today page" do
+          before { visit today_path(user) }
+          it { should have_title('Sign in') }
         end
       end#in the users controller
 
@@ -140,6 +146,11 @@ describe "Authentication" do
         describe "submitting to the update action" do
           before { patch feed_path(feed) }
           specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "visiting the feeds index" do
+          before { visit feeds_path }
+          it { should have_title('Sign in') }
         end
       end# in the feeds controller
 

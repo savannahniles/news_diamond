@@ -1,0 +1,32 @@
+<% provide(:title, 'All Websites') %>
+
+<div id="example-list">
+
+	  <div class="two-line-header">
+	  	<h1>Add New Websites to your Newspaper</h1>
+	  	<h2 class="search-h2">Search by website name and key words:</h2>
+	    <form class="form-search">
+	      <input type="text" class="input-medium search-query search">
+	      <button type="submit" class="btn">Search</button>
+	    </form>
+	    <p class="lead left">Or browse by section:</p>
+	    <button class="sort btn btn-info" data-sort="name">Sort by Name</button>
+	  </div>
+
+    <ul class="list feeds_list">
+      <% @feeds.each do |feed| %>
+        <%= render feed %>
+      <% end %>
+    </ul>
+    <div class="pagination">
+    	<ul class="pagingBottom"></ul>
+    </div>
+</div>
+
+<% if current_user.admin? %>
+	<hr class="divider">
+	<div class="center">
+		<%= link_to 'Add a New Feed', new_feed_path, class: "lead btn btn-success btn-large center-button" %>
+	</div>
+<% end %>
+ 

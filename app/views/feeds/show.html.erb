@@ -4,12 +4,12 @@
 	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
 	<h1 class="text"><%= @feed.name %></h1>
 	<p class="text lead"><%= @feed.description %></p>
-	<p class="text">
-		<%= link_to "Favorite this Website", current_user %> | 
-		<%= link_to "Go to the official website for #{@feed.name}", current_user %> | 
-		<%= link_to "Unsubscribe", current_user %>
+	<div class="text">
+		<!--This website has been added by <%= pluralize(@feed.users.count, 'person') %>.-->
+		<%= render 'shared/follow_form' %>
+		<%= link_to "Visit Online", '#', class: "btn"  %>
 		<% if current_user.admin? %>
-			| <%= link_to "Admin: Edit", edit_feed_path(@feed) %>
+			<%= link_to "Admin: Edit", edit_feed_path(@feed), class: "btn"  %>
 		<% end %>
-	</p>
+	</div>
 </div>

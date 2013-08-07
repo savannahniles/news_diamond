@@ -5,8 +5,7 @@ class SectionsController < ApplicationController
 
   def show
     @section = Section.find(params[:id])
-    @feeds = @section.feeds.paginate(page: params[:page], :per_page => 10)
-    @feed = @section.feeds.build if signed_in?
+    @feeds = @section.feeds.load & current_user.feeds
   end#def show
 
   def new
@@ -39,12 +38,6 @@ class SectionsController < ApplicationController
 
   def index
   	@sections = Section.all
-  end
-
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    redirect_to users_url
   end
 
   #before filters
