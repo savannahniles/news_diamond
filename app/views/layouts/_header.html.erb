@@ -7,7 +7,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Today", '#' %></li>
+            <li><%= link_to "Today", today_user_path(current_user) %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 You <b class="caret"></b>

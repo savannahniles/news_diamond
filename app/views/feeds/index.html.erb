@@ -29,4 +29,24 @@
 		<%= link_to 'Add a New Feed', new_feed_path, class: "lead btn btn-success btn-large center-button" %>
 	</div>
 <% end %>
+
+<script type="text/javascript">
+	var pagingBottomOptions = {
+	  name: "pagingBottom",
+	  pagingClass: "pagingBottom",
+	  outerWindow: 2,
+	  innerWindow: 1,
+	};
+
+	var options = {
+	    valueNames: [ 'name', 'description', 'headline' ],
+	    page: 20,
+			plugins: [
+				[ 'paging', pagingBottomOptions]
+			]
+	};
+
+	var featureList = new List('example-list', options);
+</script>
+ 
  

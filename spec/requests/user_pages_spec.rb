@@ -178,7 +178,7 @@ describe "User pages" do
 
     before do
       sign_in user
-      visit today_path(user)
+      visit today_user_path(user)
     end
     it { should have_title(full_title('Today')) }
     it { should have_content('Today') }
