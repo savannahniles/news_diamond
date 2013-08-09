@@ -37,6 +37,10 @@ class FeedsController < ApplicationController
   	@section = Section.find(@feed.section_id)
   end
 
+  def index
+    @feeds = Feed.all
+  end
+
   private
 
     def feed_params

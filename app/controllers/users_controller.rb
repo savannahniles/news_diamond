@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user,            only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user,            only: [:index, :edit, :update, :destroy, :today]
   before_filter :signed_in_user_filter,     only: [:new, :create]
   before_action :correct_user,              only: [:edit, :update]
   before_action :admin_user,                only: [:destroy, :index]
@@ -46,6 +46,13 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
+  end
+
+  def today
+    @title = "Today"
+    @user = User.find(params[:id])
+    @feeds = @user.feeds
+    render 'today'
   end
 
   private

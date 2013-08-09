@@ -39,10 +39,19 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+  a {
+    margin: 0px auto;
+    margin-top: 10px;
+  }
 }
 
 .left {
   text-align: left;
+}
+
+.clear-left {
+  display: block;
+  clear: left;
 }
 
 .alert {
@@ -69,6 +78,9 @@ h1 {
   margin: 50px 0px;
   small {
     letter-spacing: -1px;
+  }
+  .btn {
+    letter-spacing: 0px;
   }
 }
 
@@ -183,6 +195,7 @@ footer {
 }
 
 .divider {
+  clear: both;
   margin: 80px 0;
 }
 
@@ -290,6 +303,10 @@ input {
   @extend .error;
 }
 
+#follow_form form {
+  display: inline;
+}
+
 /* Users index */
 
 .users-index, .sections-index {
@@ -310,16 +327,23 @@ input {
 .feeds_list {
   list-style: none;
   margin: 10px 0 0 0;
+  display: block;
   li {
     padding: 10px 0px;
     margin-right: 20px;
     border-top: 1px solid #e8e8e8;
-    min-height: 95px;
+    height: 120px;
+    overflow: hidden;
+    width: 48%;
+    float: left;
 
     img {
       height: 80px;
       position: absolute;
-      padding: 7px 0px;
+      padding: 2px 0px;
+    }
+    .name {
+      line-height: 22px;
     }
     .text {
       margin-left: 90px;
@@ -335,6 +359,7 @@ input {
 }
 
 .pagination {
+  clear: left;
   .pagingTop, .pagingBottom {
     .page {
       float: left;
@@ -350,7 +375,42 @@ input {
 
 /* Home-- signed in*/
 
+.home-sections {
+  display: block;
+  li, li:last-child {
+    width: 23%;
+    border: none;
+    float: left;
+    padding: 10px;
+    position: relative;
+    .name {
+      position: absolute;
+      top: 10px;
+      padding: 20px;
+      font-size: 41px;
+      line-height: 41px;
+      background-color: rgba(104, 104, 104, .75);
+      width: 79%;
+      color: white;
+    }
+    .name:hover {
+      text-decoration: none;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+#home-divder {
+  clear: both;
+  display: block;
+  display: hidden;
+}
+
 .your-account {
+  display: block;
+  clear: left;
   margin: 0px auto;
   height: 120px;
   text-align: left;
@@ -372,9 +432,19 @@ input {
   height: 160px;
   img {
     position: absolute;
+    padding-top: 7px;
   }
   .text {
-      margin-left: 150px;
+    margin-left: 150px;
+  }
+  ul { 
+    margin-top: 8px;
+    img {
+      position: static;
+      height: 50px;
+      padding: 3px;
+      float: left;
+    }
   }
 }
 

@@ -4,18 +4,23 @@
 		<h1>Welcome, <%= current_user.first_name %></h1>
 	</div>
 
-	<ul class="sections-index">
-	  <% @sections.each do |section| %>
-	    <li>
-			<img src="assets/140x140.png" height="45px" width="45px" alt="section icon">
-		    <%= link_to capitalized_title(section.name), section %>
+	<ul class="home-sections sections-index">
+	<li>
+		<%= link_to image_tag("140x140.png", alt: 'section icon', class: "sections-icon"), '#' %>
+	    <a href="#" class="name lead">Today</a>
+	</li>
+	<% @sections.each do |section| %>
+		<li>
+			<%= link_to image_tag("140x140.png", alt: 'section icon', class: "sections-icon"), section %>
+			<%= link_to capitalized_title(section.name), section, class: "name lead" %>
 		</li>
 	  <% end %>
 	</ul>
 
+	<hr class="divider" id="home-divider" style="visibility: hidden;">
 	<hr class="divider">
 
-	<h1>Your Account</h1>
+	<h1 class="clear-left">Your Account</h1>
 	<div class="row your-account">
 		<div class="span7">
 			<%= link_to image_tag("140x140.png", alt: 'Your Account Settings'), edit_user_path(current_user) %>

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+    has_many :relationships, dependent: :destroy
+    has_many :feeds, through: :relationships
+
 	before_save { self.email = email.downcase }
     before_create :create_remember_token
 
@@ -17,6 +20,18 @@ class User < ActiveRecord::Base
 
     def User.encrypt(token)
       Digest::SHA1.hexdigest(token.to_s)
+    end
+
+    def following?(feed)
+        relationships.find_by(feed_id: feed.id)
+    end
+
+    def follow!(feed)
+        relationships.create!(feed_id: feed.id)
+    end
+
+    def unfollow!(feed)
+      relationships.find_by(feed_id: feed.id).destroy!
     end
 
     private

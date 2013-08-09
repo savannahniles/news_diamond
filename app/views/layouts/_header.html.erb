@@ -7,7 +7,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Today", '#' %></li>
+            <li><%= link_to "Today", today_user_path(current_user) %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 You <b class="caret"></b>
@@ -30,7 +30,7 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "Users", users_path %></li>
                   <li><%= link_to "Sections", sections_path %></li>
-                  <li><%= link_to "Websites", '#' %></li>
+                  <li><%= link_to "Websites", feeds_path %></li>
                 </ul>
             </li>
             <% end %>
