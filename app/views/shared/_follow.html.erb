@@ -1,4 +1,5 @@
-<%= form_for(current_user.relationships.build(feed_id: @feed.id)) do |f| %>
+<%= form_for(current_user.relationships.build(feed_id: @feed.id),
+             remote: true) do |f| %>
   <div><%= f.hidden_field :feed_id %></div>
   <%= f.submit "Add to your Newspaper", class: "btn btn-success" %>
 <% end %>

@@ -15,6 +15,7 @@ describe Feed do
   it { should respond_to(:relationships) }
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:users) }
+  it { should respond_to(:articles) }
 
   it { should be_valid }
 
@@ -32,5 +33,20 @@ describe Feed do
     before { @feed.description = " " }
     it { should_not be_valid }
   end
+
+  describe "article associations" do
+
+    before { @feed.save }
+    let!(:older_article) do
+      FactoryGirl.create(:article, title: "Lorem Ipsum", url: "www.cnn.com", author: "Billy Bob", summary: "Hello", content: "Helloooo", feed: @feed, published: 1.day.ago)
+    end
+    let!(:newer_article) do
+      FactoryGirl.create(:article, title: "Lorem Ipsum", url: "www.cnn.com", author: "Billy Bob", summary: "Hello", content: "Helloooo", feed: @feed, published: 1.hour.ago)
+    end
+
+    it "should have the right articles in the right order" do
+      expect(@feed.articles.to_a).to eq [newer_article, older_article]
+    end
+  end#article associations
 
 end

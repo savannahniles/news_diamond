@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804185234) do
+ActiveRecord::Schema.define(version: 20130810181149) do
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "author"
+    t.string   "summary"
+    t.string   "content"
+    t.datetime "published"
+    t.integer  "feed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "feeds", force: true do |t|
     t.string   "name"

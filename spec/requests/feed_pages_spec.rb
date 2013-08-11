@@ -83,6 +83,55 @@ describe "Feed pages" do
 
       it { should_not have_link('Admin: Edit', href: edit_feed_path(feed)) }
     end#as an admin
+
+    describe "follow/unfollow buttons" do
+      before { sign_in user }
+
+      describe "following a feed" do
+        before { visit feed_path(feed) }
+
+        it "should increment the user's feed count" do
+          expect do
+            click_button "Add to your Newspaper"
+          end.to change(user.feeds, :count).by(1)
+        end
+
+        it "should increment the feed's users count" do
+          expect do
+            click_button "Add to your Newspaper"
+          end.to change(feed.users, :count).by(1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Add to your Newspaper" }
+          it { should have_xpath("//input[@value='Remove from your Newspaper']") }
+        end
+      end#following
+
+      describe "unfollowing a feed" do
+        before do
+          user.follow!(feed)
+          visit feed_path(feed)
+        end
+
+        it "should decrement the user's feed count" do
+          expect do
+            click_button "Remove from your Newspaper"
+          end.to change(user.feeds, :count).by(-1)
+        end
+
+        it "should decrement the feeds's users count" do
+          expect do
+            click_button "Remove from your Newspaper"
+          end.to change(feed.users, :count).by(-1)
+        end
+
+        describe "toggling the button" do
+          before { click_button "Remove from your Newspaper" }
+          it { should have_xpath("//input[@value='Add to your Newspaper']") }
+        end
+      end#unfollowing
+    end#follow unfollow buttons
   end#feed show page
 
   describe "Edit Feed" do 
