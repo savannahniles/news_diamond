@@ -15,6 +15,7 @@ describe Article do
   it { should respond_to(:content) }
   it { should respond_to(:published) }
   it { should respond_to(:feed_id) }
+  it { should respond_to(:guid) }
   it { should respond_to(:feed) }
   its(:feed) { should eq feed }
 

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   	end
 
     def User.encrypt(token)
-      Digest::SHA1.hexdigest(token.to_s)
+        Digest::SHA1.hexdigest(token.to_s)
     end
 
     def following?(feed)
@@ -31,12 +31,12 @@ class User < ActiveRecord::Base
     end
 
     def unfollow!(feed)
-      relationships.find_by(feed_id: feed.id).destroy!
+        relationships.find_by(feed_id: feed.id).destroy!
     end
 
     private
 
     def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
+        self.remember_token = User.encrypt(User.new_remember_token)
     end
 end
