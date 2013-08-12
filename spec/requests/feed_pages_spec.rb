@@ -15,7 +15,6 @@ describe "Feed pages" do
   before { sign_in user }
 
   describe "New Feed page" do
-    let(:admin) { FactoryGirl.create(:admin) }
     before do
       sign_in admin
       visit new_feed_path
@@ -26,7 +25,6 @@ describe "Feed pages" do
   end
 
   describe "Adding a feed" do
-    let(:admin) { FactoryGirl.create(:admin) }
     before do
       sign_in admin
       visit new_feed_path

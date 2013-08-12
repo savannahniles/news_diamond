@@ -464,7 +464,7 @@ input {
       position: absolute;
       bottom: 170px;
       padding: 9px;
-      padding-left: 11px;
+      padding-left: 8px;
       font-size: 29px;
       line-height: 33px;
       background-color: rgba(104, 104, 104, .75);
@@ -486,6 +486,11 @@ input {
       width: 100%;
     }
   }
+}
+
+/* article show page */
+.article-nav-links {
+  max-width: 30%;
 }
 
 

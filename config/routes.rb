@@ -8,6 +8,7 @@ NewsDiamond::Application.routes.draw do
   resources :sections
   resources :feeds
   resources :relationships, only: [:create, :destroy]
+  resources  :articles, only: [:show]
 
   root to:  'static_pages#home'
   

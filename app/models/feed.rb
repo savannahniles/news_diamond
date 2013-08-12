@@ -18,8 +18,26 @@ class Feed < ActiveRecord::Base
 
 	def add_articles(feed_id, entries)
 		entries.each do |entry|
+			author = "" unless entry.author
+			if entry.author
+				author = entry.author
+			else
+				author = ""
+			end
+
+			if entry.summary
+				summary = entry.summary
+			else
+				summary = ""
+			end
+
+			if entry.content
+				content = entry.content
+			else
+				content = ""
+			end
 			if ( articles.none? { |art| art.guid == entry.id} && current?(entry.published) )
-				articles.create(title: entry.title, url: entry.url, author: entry.author, summary: entry.summary, content: entry.content, published: entry.published, guid: entry.id)
+				articles.create(title: entry.title, url: entry.url, author: author, summary: summary, content: content, published: entry.published, guid: entry.id)
 			end#if
 		end#do
 	end#def add_entries

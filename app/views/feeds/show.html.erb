@@ -16,7 +16,7 @@
 
 <% if @articles.any? %>
 	<hr class="divider">
-    <ul class="articles_list">
+    <ul class="articles_list tiles">
       <% @articles.each do |article| %>
         <%= render article %>
       <% end %>
