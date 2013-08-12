@@ -35,6 +35,7 @@ class FeedsController < ApplicationController
   def show
   	@feed = Feed.find(params[:id])
   	@section = Section.find(@feed.section_id)
+    @articles = @feed.articles.load
   end
 
   def index

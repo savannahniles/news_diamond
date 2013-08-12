@@ -10,7 +10,8 @@ describe "Feed pages" do
   let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
   let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Swag News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
   let!(:f2_not_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
-
+  let!(:article) { FactoryGirl.create(:article, title: "Cool Shit to Read", url: "www.cnn.com", author: "Bob", summary: "...", content: "...", published: Time.now, guid: "4", feed: feed) }
+  
   before { sign_in user }
 
   describe "New Feed page" do
@@ -132,6 +133,18 @@ describe "Feed pages" do
         end
       end#unfollowing
     end#follow unfollow buttons
+
+    describe "list of articles" do
+      it {should have_content(feed.articles.count)}
+
+      it "should list each article" do
+      feed.articles.each do |article|
+        expect(page).to have_selector('li', text: article.title)
+        expect(page).to have_selector('li', text: article.summary)
+      end
+    end#should list each feed
+
+    end#list of articles
   end#feed show page
 
   describe "Edit Feed" do 
@@ -188,6 +201,6 @@ describe "Feed pages" do
         expect(page).to have_selector('li', text: feed.name)
         expect(page).to have_selector('li', text: feed.description)
       end
-    end#should list each user
+    end#should list each feed
   end#index
 end
