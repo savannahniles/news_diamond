@@ -1,0 +1,7 @@
+<li>
+  <div class="article_image">
+  	<%= link_to image_tag("140x140.png", alt: 'article image'), article_path(article) %>
+  	<p class="name lead text"><%= link_to article.title, article_path(article) %></p>
+  </div>
+  <p class="description text"><span class="muted"><%= time_ago(article.published) %></span> <%= article.summary %></p>
+</li>

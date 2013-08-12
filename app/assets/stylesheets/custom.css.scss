@@ -448,6 +448,52 @@ input {
   }
 }
 
+/* articles */
+
+.articles_list {
+  list-style: none;
+  display: block;
+  margin: 10px 0 0 0;
+  li {
+    width: 23%;
+    border: none;
+    float: left;
+    padding: 10px;
+    position: relative;
+    .name {
+      position: absolute;
+      bottom: 170px;
+      padding: 9px;
+      padding-left: 8px;
+      font-size: 29px;
+      line-height: 33px;
+      background-color: rgba(104, 104, 104, .75);
+      width: 86%;
+      color: white;
+      a {
+        color: white;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+    .description {
+      height: 160px;
+      overflow: hidden;
+      padding-top: 10px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+/* article show page */
+.article-nav-links {
+  max-width: 30%;
+}
+
+
 
 
 

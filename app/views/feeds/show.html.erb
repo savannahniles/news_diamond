@@ -3,7 +3,7 @@
   <img src="../../assets/140x140.png" alt="website icon">
 	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
 	<h1 class="text"><%= @feed.name %></h1>
-	<p class="text lead"><%= @feed.description %></p>
+	<p class="text lead"><%= @feed.description %> | <%= pluralize(@articles.count, 'Article')%></p>
 	<div class="text">
 		<!--This website has been added by <%= pluralize(@feed.users.count, 'person') %>.-->
 		<%= render 'shared/follow_form' %>
@@ -13,3 +13,14 @@
 		<% end %>
 	</div>
 </div>
+
+<% if @articles.any? %>
+	<hr class="divider">
+    <ul class="articles_list tiles">
+      <% @articles.each do |article| %>
+        <%= render article %>
+      <% end %>
+    </ul>
+<% end %>
+
+<hr class="divider" id="home-divider" style="visibility: hidden;">

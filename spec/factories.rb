@@ -23,5 +23,15 @@ FactoryGirl.define do
     sequence(:description)  { |n| "Description goes here." }
     section
   end
+
+  factory :article do
+    title "Lorem ipsum"
+    url "www.cnn.com"
+    author "Boo Bear"
+    summary "Lorem ipsum"
+    content "Lorem ipsum"
+    published Time.now
+    feed
+  end
 end
 
