@@ -1,5 +1,5 @@
 <% provide(:title, @feed.name) %>
-<div class="two-line-header section-header">
+<div class="two-line-header feed-header">
   <img src="../../assets/140x140.png" alt="website icon">
 	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
 	<h1 class="text"><%= @feed.name %></h1>
@@ -15,7 +15,6 @@
 </div>
 
 <% if @articles.any? %>
-	<hr class="divider">
     <ul class="articles_list tiles">
       <% @articles.each do |article| %>
         <%= render article %>

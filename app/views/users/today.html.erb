@@ -3,3 +3,13 @@
 	<h2><%= current_time %></h2>
 	<h1>Today</h1>
 </div>
+
+<% if @articles.any? %>
+    <ul class="articles_list listing">
+      <% @articles.each do |article| %>
+        <%= render article %>
+      <% end %>
+    </ul>
+<% end %>
+
+<hr class="divider" id="home-divider" style="visibility: hidden;">

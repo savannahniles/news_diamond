@@ -4,14 +4,14 @@
 		<h1>Welcome, <%= current_user.first_name %></h1>
 	</div>
 
-	<ul class="home-sections sections-index">
+	<ul class="home-sections">
 	<li>
-		<%= link_to image_tag("140x140.png", alt: 'section icon', class: "sections-icon"), '#' %>
-	    <a href="#" class="name lead">Today</a>
+		<%= link_to image_tag("140x140.png", alt: 'section icon'), today_user_path(current_user) %>
+		<%= link_to "Today", today_user_path(current_user), class: "name lead" %>
 	</li>
 	<% @sections.each do |section| %>
 		<li>
-			<%= link_to image_tag("140x140.png", alt: 'section icon', class: "sections-icon"), section %>
+			<%= link_to image_tag("140x140.png", alt: 'section icon'), section %>
 			<%= link_to capitalized_title(section.name), section, class: "name lead" %>
 		</li>
 	  <% end %>
@@ -22,14 +22,14 @@
 
 	<h1 class="clear-left">Your Account</h1>
 	<div class="row your-account">
-		<div class="span7">
+		<div class="span6">
 			<%= link_to image_tag("140x140.png", alt: 'Your Account Settings'), edit_user_path(current_user) %>
 		  	<%= link_to "Your Account Settings", edit_user_path(current_user), class: "name lead text" %>
 			<p class="description text">
 			  Update your email address and delete subscriptions from which you no longer wish to receive articles.
 			</p>
 		</div>
-		<div class="span7">
+		<div class="span6">
 			<%= link_to image_tag("140x140.png", alt: 'Get Help Using News Diamond'), help_path %>
 		    <%= link_to "Get Help and View Tutorials", help_path, class: "name lead text" %>
 			<p class="description text">
@@ -38,14 +38,14 @@
 		</div>
 	</div>
 	<div class="row your-account">
-		<div class="span7">
+		<div class="span6">
 			<%= link_to image_tag("140x140.png", alt: 'Invite Friends'), root_path %>
 		  	<%= link_to "Invite Friends to Join News Diamond", root_path, class: "name lead text" %>
 			<p class="description text">
 			  Send a personalized email or physical card to your loved ones and invite them to use News Diamond, the easist way to get all of your news in one place.
 			</p>
 		</div>
-		<div class="span7">
+		<div class="span6">
 			<%= link_to image_tag("140x140.png", alt: 'Privacy'), privacy_policy_path %>
 		  	<%= link_to "Learn about our Privacy Policy", privacy_policy_path, class: "name lead text" %>
 			<p class="description text">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<div class="row your-account">
-		<div class="span7">
+		<div class="span6">
 			<%= link_to image_tag("140x140.png", alt: 'Sign Out'), signout_path %>
 		  	<%= link_to "Sign out of your Account", signout_path, class: "name lead text" %>
 			<p class="description text">

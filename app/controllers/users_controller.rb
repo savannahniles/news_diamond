@@ -52,6 +52,14 @@ class UsersController < ApplicationController
     @title = "Today"
     @user = User.find(params[:id])
     @feeds = @user.feeds
+    @articles = []
+
+    @feeds.each do |feed|
+      @articles += feed.articles
+    end
+
+    @articles.sort_by! { |a| a['published'] }.reverse! 
+
     render 'today'
   end
 

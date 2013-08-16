@@ -381,16 +381,18 @@ input {
     width: 23%;
     border: none;
     float: left;
-    padding: 10px;
+    margin: 10px;
     position: relative;
+    overflow: hidden;
     .name {
       position: absolute;
-      top: 10px;
-      padding: 20px;
+      top: 0px;
+      padding: 18px 10px;
+      margin-right: 20px;
       font-size: 41px;
       line-height: 41px;
       background-color: rgba(104, 104, 104, .75);
-      width: 79%;
+      width: 100%;
       color: white;
     }
     .name:hover {
@@ -412,9 +414,11 @@ input {
   display: block;
   clear: left;
   margin: 0px auto;
-  height: 120px;
   text-align: left;
-  .span7 {
+  height: 100px;
+  .span6 {
+    margin-left: 0px;
+    width: 50%;
     img {
       height: 80px;
       position: absolute;
@@ -422,14 +426,15 @@ input {
     }
     .text {
       margin-left: 90px;
+      padding-right: 10px;
     }
   }
 }
 
 /* section page-- show */
 
-.section-header {
-  height: 160px;
+.section-header, .feed-header, .listing {
+  min-height: 160px;
   img {
     position: absolute;
     padding-top: 7px;
@@ -452,23 +457,76 @@ input {
 
 .articles_list {
   list-style: none;
+  small {
+    color: lightgray;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+.listing {
+  min-height: 160px;
+  margin-left: 0px;
+  li {
+    border-top: 1px solid $grayMediumLight;
+    padding-top: 15px;
+    margin: 10px 0px;
+    min-height: 165px;
+    overflow: hidden;
+    .article-image {
+      position: absolute;
+      width: 19%;
+      height: 150px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+    .text {
+      margin-left: 22%;
+      margin-bottom: 7px;
+      padding-left: 5px;
+      img, br, li, ul {
+        display: none;
+      }/*img br*/
+      small {
+        display: block;
+        color: darkgray;
+      }
+      li, ul {
+        display: none;
+      }
+    }/*txt*/
+    .name {
+      font-size: 30px;
+      line-height: 34px;
+    }
+    .visible {
+      display: inherit;
+    }
+  }/*li*/
+}
+
+.tiles {
   display: block;
   margin: 10px 0 0 0;
   li {
     width: 23%;
+    height: 350px;
     border: none;
     float: left;
-    padding: 10px;
+    margin: 10px;
     position: relative;
+    background-color: rgba(104, 104, 104, .75);
+    .article-image {
+      max-height: 225px;
+      overflow: hidden;
+    }
     .name {
-      position: absolute;
-      bottom: 170px;
-      padding: 9px;
-      padding-left: 8px;
-      font-size: 29px;
-      line-height: 33px;
-      background-color: rgba(104, 104, 104, .75);
-      width: 86%;
+      padding: 5px 13px 5px 14px;
+      font-size: 24px;
+      line-height: 29px;
+      width: 90%;
       color: white;
       a {
         color: white;
@@ -481,6 +539,7 @@ input {
       height: 160px;
       overflow: hidden;
       padding-top: 10px;
+      display: none;
     }
     img {
       width: 100%;
@@ -491,6 +550,14 @@ input {
 /* article show page */
 .article-nav-links {
   max-width: 30%;
+}
+
+.article-content {
+  font-size: 21px;
+  line-height: 25px;
+  ul, li {
+    list-style-type: none;
+  }
 }
 
 

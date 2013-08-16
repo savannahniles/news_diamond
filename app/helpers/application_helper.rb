@@ -17,9 +17,12 @@ module ApplicationHelper
   def time_ago(time)
     time_local = time.localtime
     now = Time.now
-    yesterday = now - (60*60*24)
+    today = Time.new(now.year, now.month, now.day)
+    yesterday = today-(60*60*24)
     last_week = now - (60*60*24*7)
-    if time_local.between?(yesterday, now)
+    if time_local.between?(today, now)
+      return time_local.strftime("Today at %I:%M %p")
+    elsif time_local.between?(yesterday, now)
       return time_local.strftime("Yesterday at %I:%M %p")
     elsif time_local.between?(last_week, now)
       return time_local.strftime("%A at %I:%M %p")
@@ -27,5 +30,13 @@ module ApplicationHelper
       return time_local.strftime("%B %d at %I:%M %p")
     end
   end#time ago
+
+  def get_image(summary)
+    if (summary != "" && summary != nil)
+      return Nokogiri::HTML.fragment( summary ).at_css('img')['src']
+    else 
+      return ""
+    end
+  end
   
 end

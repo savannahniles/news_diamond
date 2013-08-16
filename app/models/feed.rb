@@ -48,4 +48,6 @@ class Feed < ActiveRecord::Base
 		return time.between?(last_year, now)
 	end#current
 
+
+
 end

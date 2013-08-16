@@ -1,7 +1,15 @@
 <li>
-  <div class="article_image">
-  	<%= link_to image_tag("140x140.png", alt: 'article image'), article_path(article) %>
-  	<p class="name lead text"><%= link_to article.title, article_path(article) %></p>
+  <div class="article-image">
+  	<% if article.summary.include?("<img") %>
+  		<%= link_to image_tag(get_image(article.summary), alt: 'article image'), article_path(article) %>
+  	<% else %>
+  		<%= link_to image_tag("140x140.png", alt: 'article image'), article_path(article) %>
+  	<% end %>
   </div>
-  <p class="description text"><span class="muted"><%= time_ago(article.published) %></span> <%= article.summary %></p>
+  <p class="name lead text"><small><%= time_ago(article.published) %></br></small><%= link_to article.title, article_path(article) %></p>
+  <% unless article.summary.include?("<li") %>
+	  <div class="description text">
+	  	<%=raw article.summary %>
+	  </div>  	
+  <% end %>
 </li>

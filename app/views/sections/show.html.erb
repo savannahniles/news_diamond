@@ -10,4 +10,12 @@
     </ul>
 </div>
 
+<% if @articles.any? %>
+    <ul class="articles_list listing">
+      <% @articles.each do |article| %>
+        <%= render article %>
+      <% end %>
+    </ul>
+<% end %>
+
 <hr class="divider" id="home-divider" style="visibility: hidden;">

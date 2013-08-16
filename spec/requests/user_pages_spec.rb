@@ -4,10 +4,15 @@ describe "User pages" do
 
   subject { page }
 
+  let(:user) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:admin) }
+  let(:section) { FactoryGirl.create(:section) }
+  let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+  let!(:f2_followed) { FactoryGirl.create(:feed, name: "Awesome Website!", section: section, description: "This is one sick Website!") }
+
   describe "index" do
 
     describe "as an admin user" do
-      let(:admin) { FactoryGirl.create(:admin) }
       before do
         sign_in admin
         visit users_path
@@ -40,12 +45,7 @@ describe "User pages" do
   end#describe index
 
   describe "Your Websites (profile) page" do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:admin) { FactoryGirl.create(:admin) }
-    let(:section) { FactoryGirl.create(:section) }
-    let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
-    let!(:f2_followed) { FactoryGirl.create(:feed, name: "Awesome Website!", section: section, description: "This is one sick Website!") }
-
+ 
     before do
       sign_in user
       visit user_path(user)
@@ -134,7 +134,6 @@ describe "User pages" do
   end #describe signup
 
   describe "edit" do
-    let(:user) { FactoryGirl.create(:user) }
     before do
       sign_in user
       visit edit_user_path(user)
@@ -174,14 +173,24 @@ describe "User pages" do
   end #describe edit
 
   describe "today page" do
-    let(:user) { FactoryGirl.create(:user) }
-
     before do
       sign_in user
       visit today_user_path(user)
     end
     it { should have_title(full_title('Today')) }
     it { should have_content('Today') }
+
+    describe "list of articles" do
+      #shit here
+      it "should list each article" do
+        f2_followed.articles.each do |article|
+          expect(page).to have_selector('li', text: article.title)
+          expect(page).to have_selector('li', text: article.summary)
+        end
+      end#should list each article
+
+    end#list of articles
+
   end#today
 
 end

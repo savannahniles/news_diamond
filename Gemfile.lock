@@ -231,6 +231,7 @@ DEPENDENCIES
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)
+  nokogiri
   pg (= 0.15.1)
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)

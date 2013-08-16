@@ -136,11 +136,15 @@ describe "Feed pages" do
       it {should have_content(feed.articles.count)}
 
       it "should list each article" do
-      feed.articles.each do |article|
-        expect(page).to have_selector('li', text: article.title)
-        expect(page).to have_selector('li', text: article.summary)
+        feed.articles.each do |article|
+          expect(page).to have_selector('li', text: article.title)
+          expect(page).to have_selector('li', text: article.summary)
+        end
+      end#should list each article
+
+      describe "should list time correctly" do
+        it { should have_content("Today")}
       end
-    end#should list each feed
 
     end#list of articles
   end#feed show page

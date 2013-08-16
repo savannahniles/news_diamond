@@ -6,6 +6,12 @@ class SectionsController < ApplicationController
   def show
     @section = Section.find(params[:id])
     @feeds = @section.feeds.load & current_user.feeds
+    @articles = []
+
+    @feeds.each do |feed|
+      @articles += feed.articles
+    end
+    @articles.sort_by! { |a| a['published'] }.reverse! 
   end#def show
 
   def new
