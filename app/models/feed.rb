@@ -8,15 +8,17 @@ class Feed < ActiveRecord::Base
 	validates :section_id, presence: true
 	validates :name, presence: true
 	validates :description, presence: true
+	validates :url, presence: true
+	validates :image_src, presence: true
 
-	def pull_articles(feed_url)
-		batch = Feedzirra::Feed.fetch_and_parse(feed_url)
+	def pull_articles
+		batch = Feedzirra::Feed.fetch_and_parse(self.url)
 		add_articles(:id, batch.entries)
 	end
 
 	private
 
-	def add_articles(feed_id, entries)
+	def add_articles(feed_id, entries)   #clean this up
 		entries.each do |entry|
 			author = "" unless entry.author
 			if entry.author
@@ -36,6 +38,7 @@ class Feed < ActiveRecord::Base
 			else
 				content = ""
 			end
+
 			if ( articles.none? { |art| art.guid == entry.id} && current?(entry.published) )
 				articles.create(title: entry.title, url: entry.url, author: author, summary: summary, content: content, published: entry.published, guid: entry.id)
 			end#if

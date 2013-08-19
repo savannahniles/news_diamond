@@ -29,26 +29,44 @@ def make_users
 end
 
 def make_sections
-  Section.create!(name: "Headlines")
-  Section.create!(name: "Politics")
-  Section.create!(name: "Science and Technology")
-  Section.create!(name: "Opinion")
-  Section.create!(name: "Lifestyle")
-  Section.create!(name: "Cooking")
+  Section.create!(name: "Headlines", rank: 1, image_src: "../../assets/140x140.png")
+  Section.create!(name: "US News", rank: 2, image_src: "../../assets/140x140.png")
+  Section.create!(name: "World News", rank: 3, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Politics", rank: 4, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Local", rank: 5, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Business", rank: 6, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Opinion", rank: 7, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Science", rank: 8, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Technology", rank: 9, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Health", rank: 10, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Sports", rank: 11, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Arts and Culture", rank: 12, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Entertainment", rank: 13, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Lifestyle", rank: 14, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Travel", rank: 15, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Cooking", rank: 16, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Photography", rank: 17, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Humor", rank: 18, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Books", rank: 19, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Crosswords and Puzzles", rank: 20, image_src: "../../assets/140x140.png")
+  Section.create!(name: "Inspirational", rank: 21, image_src: "../../assets/140x140.png")
+  
 end
 
 def make_feeds
   sections = Section.all(limit: 6)
-  50.times do
+  10.times do
     name = Faker::Lorem.sentence(3)
     description = Faker::Lorem.sentence(20)
-    sections.each { |section| section.feeds.create!(name: name, description: description) }
+    url = "http://food52.tumblr.com/rss"
+    image_src = "../../assets/140x140.png"
+    sections.each { |section| section.feeds.create!(name: name, description: description, url: url, image_src: image_src) }
   end #50 times
 end
 
 def make_relationships
-  first_user  = User.first
+  admin_user  = User.first
   all_feeds = Feed.all
   followed_feeds = all_feeds[2..20]
-  followed_feeds.each { |followed| first_user.follow!(followed) }
+  followed_feeds.each { |followed| admin_user.follow!(followed) }
 end

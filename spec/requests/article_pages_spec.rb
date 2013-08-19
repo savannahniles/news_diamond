@@ -19,6 +19,26 @@ describe "Article pages" do
     it { should have_content( feed.name ) }
     it { should have_content( article.title ) }
 
+    describe "delete links" do
+
+      it { should_not have_link('Delete') }
+
+      describe "as an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit article_path(article)
+        end
+
+        it { should have_link('Delete', href: article_path(article)) }
+        it "should be able to delete an article" do
+          expect do
+            click_link('Delete', match: :first)
+          end.to change(Article, :count).by(-1)
+        end
+      end
+    end
+
   end
 
 

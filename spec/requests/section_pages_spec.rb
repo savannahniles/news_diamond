@@ -9,7 +9,8 @@ describe "Section pages" do
     let(:section) { FactoryGirl.create(:section) }
     let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
     let!(:f2_followed) { FactoryGirl.create(:feed, name: "Awesome Website!", section: section, description: "This is one sick Website!") }
-  
+    let!(:article_followed) { FactoryGirl.create(:article, title: "Cool Shit to Read", url: "www.cnn.com", author: "Bob", summary: "...", content: "...", published: Time.now, guid: "4", feed: f2_followed) }
+
     before do
       sign_in user
       user.follow!(f2_followed)
@@ -25,6 +26,17 @@ describe "Section pages" do
       #it { should have_link(href: feed_path(f2_followed)) }
       it { should_not have_link(href: feed_path(f1_not_followed)) }
     end
+
+    describe "list of articles" do
+      #shit here
+      it "should list each article" do
+        f2_followed.articles.each do |article|
+          expect(page).to have_selector('li', text: article.title)
+          expect(page).to have_selector('li', text: article.summary)
+        end
+      end#should list each article
+
+    end#list of articles
 
   end#section show page
 
@@ -56,7 +68,9 @@ describe "Section pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example Section"
+        fill_in "Name",             with: "Example Section"
+        fill_in "Rank",             with: "1"
+        fill_in "Image src",        with: "new_image_src"
       end
 
       it "should create a section" do
@@ -86,8 +100,12 @@ describe "Section pages" do
 
     describe "with valid information" do
       let(:new_name)  { "New Name" }
+      let(:new_image_src)  { "new_image_src" }
+      let(:new_rank)  { "4" }
       before do
         fill_in "Name",             with: new_name
+        fill_in "Rank",             with: new_rank
+        fill_in "Image src",             with: new_name
         click_button "Save changes"
       end
 

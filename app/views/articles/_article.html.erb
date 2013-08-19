@@ -6,7 +6,7 @@
   		<%= link_to image_tag("140x140.png", alt: 'article image'), article_path(article) %>
   	<% end %>
   </div>
-  <p class="name lead text"><small><%= time_ago(article.published) %></br></small><%= link_to article.title, article_path(article) %></p>
+  <p class="name lead text"><small><%= time_ago(article.published)%><span class="feed-name"> | <%= link_to article.feed.name, feed_path(article.feed) %></span></br></small><%= link_to article.title, article_path(article) %></p>
   <% unless article.summary.include?("<li") %>
 	  <div class="description text">
 	  	<%=raw article.summary %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130811215122) do
+ActiveRecord::Schema.define(version: 20130816215529) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20130811215122) do
     t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
+    t.string   "image_src"
   end
 
   add_index "feeds", ["section_id", "name"], name: "index_feeds_on_section_id_and_name"
@@ -51,9 +53,12 @@ ActiveRecord::Schema.define(version: 20130811215122) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rank"
+    t.string   "image_src"
   end
 
   add_index "sections", ["name"], name: "index_sections_on_name", unique: true
+  add_index "sections", ["rank"], name: "index_sections_on_rank"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

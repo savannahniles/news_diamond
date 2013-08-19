@@ -167,6 +167,18 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Articles controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+
       describe "as wrong user" do
 	      let(:user) { FactoryGirl.create(:user) }
 	      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
@@ -189,6 +201,7 @@ describe "Authentication" do
         let(:non_admin) { FactoryGirl.create(:user) }
         let(:section) { FactoryGirl.create(:section) }
         let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+        let!(:article) { FactoryGirl.create(:article, title: "Cool Shit to Read", url: "www.cnn.com", author: "Bob", summary: "...", content: "...", published: Time.now, guid: "4", feed: feed) }
 
         before { sign_in non_admin, no_capybara: true }
 
@@ -245,6 +258,11 @@ describe "Authentication" do
         describe "submitting to the feed update action" do
           before { patch feed_path(feed) }
           specify { expect(response).to redirect_to(root_path) }
+        end
+
+        describe "submitting a DELETE request to the Users#destroy action" do
+          before { delete article_path(article) }
+          specify { expect(response).to redirect_to(root_url) }
         end
       end#as a non-admin user
 

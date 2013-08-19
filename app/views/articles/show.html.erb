@@ -23,6 +23,12 @@
 	<span><%= link_to 'Open this article on ' + @feed.name + ' in a new window. >>', @article.url, class: "article-nav-links pull-right" %></span>
 </div>
 
+<% if current_user.admin? %>
+<hr class="divider">
+    <%= link_to "Delete", @article, method: :delete,
+                                  data: { confirm: "You sure?" }, class: "btn" %>
+  <% end %>
+
 
 <hr class="divider" id="home-divider" style="visibility: hidden;">
 

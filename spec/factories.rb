@@ -13,6 +13,8 @@ FactoryGirl.define do
 
   factory :section do
     name     "Cooking"
+    rank     "12"
+    image_src      "../../assets/140x140.png"
   end
 
   factory :feed do
@@ -21,6 +23,8 @@ FactoryGirl.define do
     #section
     sequence(:name)  { |n| "Feed #{n}" }
     sequence(:description)  { |n| "Description goes here." }
+    sequence(:url)  { "www.cnn.com" }
+    sequence(:image_src)  { "src" }
     section
   end
 

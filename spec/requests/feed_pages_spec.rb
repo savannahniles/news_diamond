@@ -7,9 +7,9 @@ describe "Feed pages" do
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
   let(:section) { FactoryGirl.create(:section) }
-  let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
-  let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Swag News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
-  let!(:f2_not_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
+  let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, url: "www.cnn.com", image_src: "goof", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+  let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Swag News", section: section, url: "www.cnn.com", image_src: "goof", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+  let!(:f2_not_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, url: "www.cnn.com", image_src: "goof", description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
   let!(:article) { FactoryGirl.create(:article, title: "Cool Shit to Read", url: "www.cnn.com", author: "Bob", summary: "...", content: "...", published: Time.now, guid: "4", feed: feed) }
   
   before { sign_in user }
@@ -49,6 +49,8 @@ describe "Feed pages" do
       before do
         fill_in "Name",                with: "Example Feed"
         fill_in "Description",         with: "Example Description"
+        fill_in "Url",                 with: "Example Url"
+        fill_in "Image src",           with: "Example image_src"
       end
 
       it "should create a section" do
@@ -173,10 +175,15 @@ describe "Feed pages" do
     describe "with valid information" do
       let(:new_name)  { "New Name" }
       let(:new_description)  { "New Description" }
+      let(:new_url)          { "new url" }
+      let(:new_image_src)    { "new image src"}
       let(:new_section)      { @other_section }
+
       before do
         fill_in "Name",             with: new_name
-        fill_in "Description",             with: new_description
+        fill_in "Description",      with: new_description
+        fill_in "Url",             with: new_url
+        fill_in "Image src",      with: new_image_src
         select @other_section, from: "feed_section_id"
         click_button save
       end
