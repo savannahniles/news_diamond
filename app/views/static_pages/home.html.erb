@@ -6,7 +6,7 @@
 
 	<ul class="home-sections">
 	<li>
-		<%= link_to image_tag("/assets/140x140.png", alt: 'section icon'), today_user_path(current_user) %>
+		<%= link_to image_tag("140x140.png", alt: 'section icon'), today_user_path(current_user) %>
 		<%= link_to "Today", today_user_path(current_user), class: "name lead" %>
 	</li>
 	<% @sections.each do |section| %>
