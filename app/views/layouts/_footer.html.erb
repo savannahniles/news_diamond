@@ -1,5 +1,9 @@
 <footer class="footer">
-    <small class="lead"> Thank you for using News Diamond. <span><img src="/assets/diamond-grey.png" height="29px" class="logo-diamond" alt="diamond logo"></span></small>
+    <small class="lead"> Thank you for using News Diamond. 
+    	<span>
+    	<%= image_tag("diamond-grey.png", height: "29px", class: "logo-diamond", alt: "diamond logo") %>
+    	</span>
+    </small>
   <nav>
     <ul>
       <li><%= link_to "About",   about_path %></li>
@@ -9,3 +13,4 @@
     </ul>
   </nav>
 </footer>
+

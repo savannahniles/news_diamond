@@ -1,6 +1,6 @@
 <% provide(:title, capitalized_title(@section.name)) %>
 <div class="two-line-header section-header">
-  <img src="../../assets/140x140.png" alt="section icon">
+  <%= image_tag("140x140.png", alt: "section icon") %>
 	<h1 class="text"><%= capitalized_title(@section.name) %></h1>
 	<h2 class="text">You follow <%= pluralize(@feeds.count, 'website')%> in this section.</h2>
 	<ul class="list tiny_feeds_list text">

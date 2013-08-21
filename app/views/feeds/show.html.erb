@@ -1,6 +1,6 @@
 <% provide(:title, @feed.name) %>
 <div class="two-line-header feed-header">
-  <img src="../../assets/140x140.png" alt="website icon">
+	<%= image_tag("140x140.png", alt: "website logo") %>
 	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
 	<h1 class="text"><%= @feed.name %></h1>
 	<p class="text lead"><%= @feed.description %> | <%= pluralize(@articles.count, 'Article')%></p>
