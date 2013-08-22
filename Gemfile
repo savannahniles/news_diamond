@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'faker', '1.1.2'
 gem 'feedzirra'
 gem 'nokogiri'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'

@@ -60,7 +60,7 @@ def make_sections
 end
 
 def make_feeds
-  image_src = "140x140.png"
+  image_src = "fox_news.jpeg"
 
   #Headlines
     Section.find_by_id(1).feeds.create!(name: "Fox News: Latest Headlines", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/latest", site: "http://www.foxnews.com/index.html", image_src: image_src) 
@@ -107,7 +107,7 @@ def make_feeds
     Section.find_by_id(15).feeds.create!(name: "Fox News: Travel", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/internal/travel/mixed", site: "http://www.foxnews.com/travel/index.html", image_src: image_src) 
 
   #Cooking
-    Section.find_by_id(16).feeds.create!(name: "Food52", description: "Food community, recipe search, kitchen & home products, and cookbook contests.", url: "http://food52.tumblr.com/rss", site: "http://food52.tumblr.com", image_src: image_src) 
+    Section.find_by_id(16).feeds.create!(name: "Food52", description: "Food community, recipe search, kitchen & home products, and cookbook contests.", url: "http://food52.tumblr.com/rss", site: "http://food52.tumblr.com", image_src: "food52.png") 
 
   #Photography
   #Humor
