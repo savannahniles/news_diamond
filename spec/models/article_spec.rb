@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Article do
 
   let(:section) {FactoryGirl.create(:section)}
-  let!(:feed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+  let!(:feed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, url: "www.cnn.com", site: "www.cnn.com", image_src: "goof", description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
   before { @article = feed.articles.build(title: "Lorem ipsum", url: "www.cnn.com", author: "Bob", summary: "Lorem Ipsum", content: "Lorem Ipsum", published: Time.now) }
 
   subject { @article }

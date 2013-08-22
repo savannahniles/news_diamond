@@ -1,5 +1,7 @@
 <li>
+  <% @feed = feed %>
   <%= image_tag("140x140.png", height: "80px", alt: "website icon") %>
   <p class="name lead text"><%= link_to feed.name, feed_path(feed) %> <small class="section">| <%= capitalized_title(feed.section.name) %></small></p>
   <p class="description text"><%= feed.description %></p>
+  <%= render 'shared/follow_form' %>
 </li>

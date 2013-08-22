@@ -1,5 +1,5 @@
 <li>
-	<%= image_tag("140x140.png", width: "45px", height: "45px", alt: "section icon") %>
+	<%= image_tag(section.image_src, width: "45px", height: "45px", alt: "section icon") %>
     <%= link_to capitalized_title(section.name), section %>
     | <%= link_to 'Edit', edit_section_path(section) %>
 </li>

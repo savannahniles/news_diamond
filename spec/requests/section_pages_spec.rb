@@ -7,8 +7,8 @@ describe "Section pages" do
   describe "Section show page" do
     let(:user) { FactoryGirl.create(:user) }
     let(:section) { FactoryGirl.create(:section) }
-    let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Cool News", section: section, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
-    let!(:f2_followed) { FactoryGirl.create(:feed, name: "Awesome Website!", section: section, description: "This is one sick Website!") }
+    let!(:f1_not_followed) { FactoryGirl.create(:feed, name: "Swag News", section: section, url: "www.cnn.com", site: "www.cnn.com", image_src: "goof", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.") }
+    let!(:f2_followed) { FactoryGirl.create(:feed, name: "Sweet Blog", section: section, url: "www.cnn.com", site: "www.cnn.com", image_src: "goof", description: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.") }
     let!(:article_followed) { FactoryGirl.create(:article, title: "Cool Shit to Read", url: "www.cnn.com", author: "Bob", summary: "...", content: "...", published: Time.now, guid: "4", feed: f2_followed) }
 
     before do

@@ -15,13 +15,8 @@
 </div>
 
 <% if !@article.content || @article.content == "" %>
-	<div class="alert alert-info"><strong>Hmm, it looks like the full article can only be read at it's original source.</strong> Some news sites prefer that articles be read on their website. Click the bottom-right link below to open the article on <%= @feed.name %> in a new window in your browser. When you're done reading, come back to News Diamond to discover more great articles.</div>
+	<div class="alert alert-info"><strong><%= link_to 'Open this article on ' + @feed.name + ' in a new window. ', @article.url, target: '_blank'%></strong><%= link_to 'Or view more articles from ' + @feed.name + ' on News Diamond.', feed_path(@feed)%></div>
 <% end %>
-<p><%= @article.content %></p>
-<div>
-	<span><%= link_to '<< View more articles from ' + @feed.name + ' on News Diamond.', feed_path(@feed), class: "article-nav-links pull-left" %></span>
-	<span><%= link_to 'Open this article on ' + @feed.name + ' in a new window. >>', @article.url, class: "article-nav-links pull-right" %></span>
-</div>
 
 <% if current_user.admin? %>
 <hr class="divider">

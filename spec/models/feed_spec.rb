@@ -3,13 +3,14 @@ require 'spec_helper'
 describe Feed do
 
   let(:section) { FactoryGirl.create(:section) }
-  before { @feed = section.feeds.build(name: "the New York Times", description: "Lorem ipsum", url: "www.cnn.com", image_src: "foo") }
+  before { @feed = section.feeds.build(name: "the New York Times", description: "Lorem ipsum", url: "www.cnn.com", site: "www.cnn.com", image_src: "foo") }
 
   subject { @feed }
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:url) }
+  it { should respond_to(:site) }
   it { should respond_to(:image_src) }
   it { should respond_to(:section_id) }
   it { should respond_to(:section) }
@@ -38,6 +39,11 @@ describe Feed do
 
   describe "with blank url" do
     before { @feed.url = " " }
+    it { should_not be_valid }
+  end
+
+  describe "with blank site" do
+    before { @feed.site = " " }
     it { should_not be_valid }
   end
 

@@ -1,13 +1,13 @@
 <% provide(:title, @feed.name) %>
 <div class="two-line-header feed-header">
-	<%= image_tag("140x140.png", alt: "website logo") %>
+	<%= image_tag(@feed.image_src, alt: "website logo") %>
 	<h2 class="text"><%= link_to capitalized_title(@section.name), section_path(@section) %></h2>
 	<h1 class="text"><%= @feed.name %></h1>
 	<p class="text lead"><%= @feed.description %> | <%= pluralize(@articles.count, 'Article')%></p>
 	<div class="text">
 		<!--This website has been added by <%= pluralize(@feed.users.count, 'person') %>.-->
 		<%= render 'shared/follow_form' %>
-		<%= link_to "Visit Online", '#', class: "btn"  %>
+		<%= link_to "Visit Online", @feed.site, class: "btn", target: '_blank'  %>
 		<% if current_user.admin? %>
 			<%= link_to "Admin: Edit", edit_feed_path(@feed), class: "btn"  %>
 		<% end %>

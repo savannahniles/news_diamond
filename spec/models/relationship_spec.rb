@@ -5,6 +5,7 @@ describe Relationship do
   let(:user) { FactoryGirl.create(:user) }
   let(:feed) { FactoryGirl.create(:feed) }
   let(:relationship) { user.relationships.build(feed_id: feed.id) }
+  
 
   subject { relationship }
 

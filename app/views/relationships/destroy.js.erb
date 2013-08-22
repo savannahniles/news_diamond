@@ -1,1 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('shared/follow')) %>")
+<% id = "#follow_form_" + @feed.id.to_s %>
+$("<%= id %>").html("<%= escape_javascript(render('shared/follow')) %>")

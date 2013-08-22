@@ -9,11 +9,19 @@ class Feed < ActiveRecord::Base
 	validates :name, presence: true
 	validates :description, presence: true
 	validates :url, presence: true
+	validates :site, presence: true
 	validates :image_src, presence: true
+
+	def self.update_all_feeds
+	  find(:all).each do |feed|
+	    feed.pull_articles
+	  end
+	end
 
 	def pull_articles
 		batch = Feedzirra::Feed.fetch_and_parse(self.url)
 		add_articles(:id, batch.entries)
+		self.articles = self.articles.slice!(0, 50)
 	end
 
 	private

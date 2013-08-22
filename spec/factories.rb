@@ -23,7 +23,8 @@ FactoryGirl.define do
     #section
     sequence(:name)  { |n| "Feed #{n}" }
     sequence(:description)  { |n| "Description goes here." }
-    sequence(:url)  { "www.cnn.com" }
+    sequence(:url)  { "www.cnn.com/rss" }
+    sequence(:site)  { "www.cnn.com" }
     sequence(:image_src)  { "src" }
     section
   end

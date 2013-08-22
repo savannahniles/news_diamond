@@ -304,7 +304,7 @@ input {
   @extend .error;
 }
 
-#follow_form form {
+.follow_form form {
   display: inline;
 }
 
@@ -351,6 +351,9 @@ input {
     }
     p, .lead {
       margin-bottom: 0;
+    }
+    .btn {
+      margin: 10px 0px 10px 90px;
     }
   }
 }
