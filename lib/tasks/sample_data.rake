@@ -60,7 +60,7 @@ def make_sections
 end
 
 def make_feeds
-  image_src = "fox_news.jpeg"
+  image_src = "fox_news.jpg"
 
   #Headlines
     Section.find_by_id(1).feeds.create!(name: "Fox News: Latest Headlines", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/latest", site: "http://www.foxnews.com/index.html", image_src: image_src) 
