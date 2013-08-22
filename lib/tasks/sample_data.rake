@@ -101,7 +101,7 @@ def make_feeds
     Section.find_by_id(13).feeds.create!(name: "Fox News: Fox and Friends", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/foxandfriends", site: "http://www.foxnews.com/on-air/fox-friends/index.html", image_src: image_src) 
 
   #Lifestyle
-    Section.find_by_id(14).feeds.create!(name: "Fox News: Lifestyle", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/lifestyle", site: "http://www.foxnews.com/leisure/index.html", image_src: image_src) 
+    Section.find_by_id(14).feeds.create!(name: "Fox News: Lifestyle", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/section/lifestyle", site: "http://www.foxnews.com/leisure/index.html", image_src: image_src) 
 
   #Travel
     Section.find_by_id(15).feeds.create!(name: "Fox News: Travel", description: "Fox News: Fair and Balanced", url: "http://feeds.foxnews.com/foxnews/internal/travel/mixed", site: "http://www.foxnews.com/travel/index.html", image_src: image_src) 
