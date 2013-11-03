@@ -4,6 +4,11 @@ module FeedsHelper
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
 
+  def update_feed
+    feed = Feed.find(params[:id])
+    feed.pull_articles unless current?(feed.updated_at)
+  end
+
   private
 
     def wrap_long_string(text, max_width = 30)

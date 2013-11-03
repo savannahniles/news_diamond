@@ -38,5 +38,11 @@ module ApplicationHelper
       return ""
     end
   end
+
+  def current?(time) 
+    now = Time.now
+    fifteen_minutes_ago = now - (60*15)
+    return time.between?(fifteen_minutes_ago, now)
+  end#current
   
 end

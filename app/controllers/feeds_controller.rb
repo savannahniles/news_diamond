@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   before_action :signed_in_user
   before_action :admin_user,     only:  [:new, :create, :edit, :update]
+  before_action :update_feed,    only:  :show
   include FeedsHelper
 
   def new
@@ -35,6 +36,7 @@ class FeedsController < ApplicationController
   def show
   	@feed = Feed.find(params[:id])
   	@section = Section.find(@feed.section_id)
+    #@feed.pull_articles unless current?(@feed.updated_at)
     @articles = @feed.articles.load
   end
 
@@ -47,5 +49,11 @@ class FeedsController < ApplicationController
     def feed_params
       params.require(:feed).permit(:name, :description, :url, :site, :image_src, :section_id)
     end 
+
+    def current?(time) 
+      now = Time.now
+      fifteen_minutes_ago = now - (60*15)
+      return time.between?(fifteen_minutes_ago, now)
+    end#current
 
 end

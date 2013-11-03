@@ -18,10 +18,17 @@ class Feed < ActiveRecord::Base
 	  end
 	end
 
+	def self.update_feeds(feeds)
+		feeds.each do |feed|
+			feed.pull_articles
+		end
+	end
+
 	def pull_articles
 		batch = Feedzirra::Feed.fetch_and_parse(self.url)
 		add_articles(:id, batch.entries)
 		self.articles = self.articles.slice!(0, 50)
+		self.updated_at = Time.now
 	end
 
 	private
